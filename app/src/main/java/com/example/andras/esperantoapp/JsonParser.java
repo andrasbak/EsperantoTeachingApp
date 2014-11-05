@@ -35,7 +35,8 @@ public class JsonParser {
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
         */
-          is = new FileInputStream(FilCache.hentFil(url, false));
+          String lokalHentetFil = FilCache.hentFil(url, false);
+          is = new FileInputStream(lokalHentetFil);
 
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());

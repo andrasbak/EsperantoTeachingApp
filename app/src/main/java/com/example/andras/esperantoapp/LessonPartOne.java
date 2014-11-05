@@ -45,7 +45,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         button.setOnClickListener(this);
         button.setVisibility(View.INVISIBLE);
         dataFromJson();
-        JsonDownload.getInstance().downloadJson();
+        JsonDownload.getInstance().downloadJson("https://api.myjson.com/bins/4tpyv");
         //imageView.setImageResource(R.drawable.LessonData.getInstance().getPicture()).toString();
 
 

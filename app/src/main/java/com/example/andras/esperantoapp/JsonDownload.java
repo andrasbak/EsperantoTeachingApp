@@ -57,7 +57,7 @@ public class JsonDownload {
 
     }
 
-    public String downloadJson() {
+    public String downloadJson(final String url) {
 
         new AsyncTask() {
             private String phrase, picture, title, sound;
@@ -69,7 +69,7 @@ public class JsonDownload {
                 pdata = new ArrayList<String>();
                 // JSON file URL address
                 jsonObject = JsonParser
-                        .getJSONfromURL("https://api.myjson.com/bins/4tpyv");
+                        .getJSONfromURL(url);
                 try {
                     // Locate the NodeList name
                     jsonArray = jsonObject.getJSONArray(LessonData.getInstance().getLessonNumber());
