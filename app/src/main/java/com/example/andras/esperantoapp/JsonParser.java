@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -27,11 +28,14 @@ public class JsonParser {
 
         // Download JSON data from URL
         try {
+       /*
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(url);
             HttpResponse response = httpclient.execute(httppost);
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
+        */
+          is = new FileInputStream(FilCache.hentFil(url, false));
 
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());
