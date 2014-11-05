@@ -1,6 +1,7 @@
 package com.example.andras.esperantoapp;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class LessonPartOne extends Fragment implements View.OnClickListener {
 
@@ -45,10 +48,26 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         button.setOnClickListener(this);
         button.setVisibility(View.INVISIBLE);
         dataFromJson();
-        JsonDownload.getInstance().downloadJson("https://api.myjson.com/bins/4tpyv");
-        //imageView.setImageResource(R.drawable.LessonData.getInstance().getPicture()).toString();
 
 
+      new AsyncTask() {
+
+        public ArrayList<PartData> res;
+
+        @Override
+        protected Object doInBackground(Object... params) {
+          res = JsonDownload.getInstance().downloadJson("https://api.myjson.com/bins/4tpyv");
+          return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+          PartData l = res.get(0);
+          titleView.setText("hej1 "+l.getTitle());
+          textView.setText("hej2 "+l.getPhrase());
+        }
+
+      }.execute();
 
         return lessonpart1;
 

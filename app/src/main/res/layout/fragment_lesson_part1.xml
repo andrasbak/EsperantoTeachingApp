@@ -37,34 +37,15 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:layout_above="@+id/buttonPart1">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"></View>
-
         <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="0.40"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageButtonPart1"
             android:src="@drawable/listen"
             android:background="#ffffffff"
-            android:layout_marginTop="20dp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"></View>
-
-
-
-        </LinearLayout>
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_above="@+id/buttonPart1"/>
 
 
 
