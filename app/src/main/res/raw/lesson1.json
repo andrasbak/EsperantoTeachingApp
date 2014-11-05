@@ -1,0 +1,203 @@
+{
+	"Lesson1": 
+		[
+			{
+				"part":1,"opg":1,"id":111,
+				"phrase": "Katten er en hat",
+				"sound": "hattekat.mp3",
+				"picture": "hattekat.jpg",
+				"title": "Leciono 1. Parto 1. Demando 1 el 5"
+			},
+			{
+				"id":112,
+				"phrase": "Katten er en hat",
+				"sound": "cat",
+				"picture": "hattekat.jpg",
+				"title": "Leciono 1. Parto 1. Demando 2 el 5"
+			},
+			{
+				"part":1,"opg":3,"id":113,
+				"phrase": "Er elefanten rund?",
+				"sound": "elefanto",
+				"picture": "hattekat.jpg",
+				"title": "Leciono 1. Parto 1. Demando 3 el 5"
+			},
+			{
+				"part":1,"opg":4,"id":114,
+				"phrase": "Katten er en hat",
+				"sound": "hattekat.mp3",
+				"picture": "hattekat.jpg",
+				"title": "Leciono 1. Parto 1. Demando 4 el 5"
+			},
+			{
+				"part":1,"opg":5,"id":115,
+				"phrase": "Katten er en hat",
+				"sound": "hattekat.mp3",
+				"picture": "hattekat.jpg",
+				"title": "Leciono 1. Parto 1. Demando 5 el 5"
+			},
+			
+			
+			
+			
+			
+			{
+				"part":2,"opg":1,"id":121,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "elefant",
+				"incorrect2": "giraf",
+				"correct": "kat",
+				"title": "Leciono 1. Parto 2. Demando 1 el 5"
+			},		
+			{
+				"part":2,"opg":2,"id":122,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "elefant",
+				"incorrect2": "giraf",
+				"correct": "kat",
+				"title": "Leciono 1. Parto 2. Demando 2 el 5"
+			},	
+			{
+				"part":2,"opg":3,"id":"MyActivity",
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "cat",
+				"sound": "cat",
+				"incorrect1": "elefanto",
+				"incorrect2": "hundo",
+				"correct": "kato",
+				"title": "Leciono 1. Parto 2. Demando 3 el 5"
+			},	
+			{
+				"part":2,"opg":4,"id":124,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "elefanto",
+				"incorrect1": "elefanto",
+				"incorrect2": "girafo",
+				"correct": "edderkoppo",
+				"title": "Leciono 1. Parto 2. Demando 4 el 5"
+			},		
+			{
+				"part":2,"opg":5,"id":125,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "a",
+				"incorrect2": "b",
+				"correct": "c",
+				"title": "Leciono 1. Parto 2. Demando 5 el 5"
+			},	
+			
+			
+			
+			
+			
+			
+			{
+				"id":131,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "jes",
+				"correct": "ne",
+				"title": "Leciono 1. Parto 3. Demando 1 el 5"
+			},
+			{
+				"id":132,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "jes",
+				"correct": "ne",
+				"title": "Leciono 1. Parto 3. Demando 2 el 5"
+			},
+			{
+				"id":133,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "jes",
+				"correct": "ne",
+				"title": "Leciono 1. Parto 3. Demando 3 el 5"
+			},
+			{
+				"id":134,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "jes",
+				"correct": "ne",
+				"title": "Leciono 1. Parto 3. Demando 4 el 5"
+			},
+			{
+				"id":135,
+				"phrase": "Vælg det rigtige ord ud fra billedet",
+				"picture": "kat.jpg",
+				"incorrect1": "jes",
+				"correct": "ne",
+				"title": "Leciono 1. Parto 3. Demando 5 el 5"
+			},
+			
+			
+			
+			
+			
+			
+			{
+				"id":141,
+				"phrase": "Elefanto estas",
+				"picture": "kat.jpg",
+				"word1": "jes",
+				"word2": "ne",
+				"word3": "ne",
+				"word4": "ne",
+				"word5": "ne",
+				"word6": "ne",
+				"title": "Leciono 1. Parto 4. Demando 1 el 5"
+			},
+			{
+				"id":142,
+				"phrase": "Elefanto estas",
+				"picture": "kat.jpg",
+				"word1": "jes",
+				"word2": "ne",
+				"word3": "ne",
+				"word4": "ne",
+				"word5": "ne",
+				"word6": "ne",
+				"title": "Leciono 1. Parto 4. Demando 2 el 5"
+			},
+			{
+				"id":143,
+				"phrase": "Elefanto estas",
+				"picture": "kat.jpg",
+				"word1": "jes",
+				"word2": "ne",
+				"word3": "ne",
+				"word4": "ne",
+				"word5": "ne",
+				"word6": "ne",
+				"title": "Leciono 1. Parto 4. Demando 3 el 5"
+			},
+			{
+				"id":144,
+				"phrase": "Elefanto estas",
+				"picture": "kat.jpg",
+				"word1": "jes",
+				"word2": "ne",
+				"word3": "ne",
+				"word4": "ne",
+				"word5": "ne",
+				"word6": "ne",
+				"title": "Leciono 1. Parto 4. Demando 4 el 5"
+			},
+			{
+				"id":145,
+				"phrase": "Elefanto estas",
+				"picture": "kat.jpg",
+				"word1": "jes",
+				"word2": "ne",
+				"word3": "ne",
+				"word4": "ne",
+				"word5": "ne",
+				"word6": "ne",
+				"title": "Leciono 1. Parto 4. Demando 5 el 5"
+			}
+		]
+	}
