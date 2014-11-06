@@ -50,24 +50,26 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         dataFromJson();
 
 
-      new AsyncTask() {
+        new AsyncTask() {
 
-        public ArrayList<PartData> res;
+            public ArrayList<PartData> res;
 
-        @Override
-        protected Object doInBackground(Object... params) {
-          res = JsonDownload.getInstance().downloadJson("https://api.myjson.com/bins/4tpyv");
-          return null;
-        }
+            @Override
+            protected Object doInBackground(Object... params) {
+                res = JsonDownload.getInstance().downloadJson("http://pastebin.com/raw.php?i=KfVJNjrX");
+                return null;
+            }
 
-        @Override
-        protected void onPostExecute(Object o) {
-          PartData l = res.get(0);
-          titleView.setText("hej1 "+l.getTitle());
-          textView.setText("hej2 "+l.getPhrase());
-        }
+            @Override
+            protected void onPostExecute(Object o) {
+                PartData l = res.get(LessonData.getInstance().getCounter());
+                titleView.setText("hej1 "+l.getTitle());
+                textView.setText("hej2 "+l.getPhrase());
+                System.out.println("Title: "+l.getTitle()+"\n"+"Phrase: "+l.getPhrase());
+                
+            }
 
-      }.execute();
+        }.execute();
 
         return lessonpart1;
 
@@ -105,7 +107,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
             if (LessonData.getInstance().getCounter() < 8) {
 
-                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter()+1);
+                LessonData.getInstance().setCounter(1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartOne());
                 //ft.addToBackStack(null);
@@ -123,5 +125,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
 
     }
+
+
 
 }
