@@ -17,10 +17,6 @@ public class SplashScreen extends Activity {
 
     // Set Duration of the Splash Screen
     long Delay = 1000;
-    JSONObject jsonObject;
-    JSONArray jsonArray;
-    ArrayList<PartData> partDataList;
-    ArrayList<String> pdata;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

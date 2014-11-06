@@ -24,12 +24,12 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
     Button button;
     private String[] lessonInfo1 = {"111", "112", "113", "114", "115", "116",
             "117", "118", "119"};
-    private String[] lessonInfo2 = {"121", "122", "123", "124", "125", "126",
-            "127", "128", "129"};
-    private String[] lessonInfo3 = {"131", "132", "133", "134", "135", "136",
-            "137", "138", "139"};
-    private String[] lessonInfo4 = {"141", "142", "143", "144", "145", "146",
-            "147", "148", "149"};
+    private String[] lessonInfo2 = {"211", "212", "213", "214", "215", "216",
+            "217", "218", "219"};
+    private String[] lessonInfo3 = {"311", "312", "313", "314", "315", "316",
+            "317", "318", "319"};
+    private String[] lessonInfo4 = {"411", "412", "413", "414", "415", "416",
+            "417", "418", "419"};
     String title, phrase, sound, picture;
 
 
@@ -64,10 +64,9 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             protected void onPostExecute(Object o) {
                 System.out.println("Counter: "+LessonData.getInstance().getCounter());
                 PartData l = res.get(LessonData.getInstance().getCounter());
-                titleView.setText("hej1 "+l.getTitle());
-                textView.setText("hej2 "+l.getPhrase());
-                System.out.println("Title: "+l.getTitle()+"\n"+"Phrase: "+l.getPhrase()
-                        +"\n"+"Picture: "+l.getPicture()+"\n"+"Sound: "+l.getSound());
+                titleView.setText(l.getTitle());
+                textView.setText(l.getPhrase());
+
                 
             }
 
