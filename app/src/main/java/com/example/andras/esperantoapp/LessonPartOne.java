@@ -56,16 +56,18 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
             @Override
             protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson("http://pastebin.com/raw.php?i=KfVJNjrX");
+                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().getLessonUrl().toString());
                 return null;
             }
 
             @Override
             protected void onPostExecute(Object o) {
+                System.out.println("Counter: "+LessonData.getInstance().getCounter());
                 PartData l = res.get(LessonData.getInstance().getCounter());
                 titleView.setText("hej1 "+l.getTitle());
                 textView.setText("hej2 "+l.getPhrase());
-                System.out.println("Title: "+l.getTitle()+"\n"+"Phrase: "+l.getPhrase());
+                System.out.println("Title: "+l.getTitle()+"\n"+"Phrase: "+l.getPhrase()
+                        +"\n"+"Picture: "+l.getPicture()+"\n"+"Sound: "+l.getSound());
                 
             }
 
@@ -79,21 +81,24 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
         if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
             LessonData.getInstance().setInfo(lessonInfo1[LessonData.getInstance().getCounter()]);
+            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=KfVJNjrX");
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 2")) {
             LessonData.getInstance().setInfo(lessonInfo2[LessonData.getInstance().getCounter()]);
+            LessonData.getInstance().setLessonUrl("");
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 3")) {
             LessonData.getInstance().setInfo(lessonInfo3[LessonData.getInstance().getCounter()]);
+            LessonData.getInstance().setLessonUrl("");
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 4")) {
             LessonData.getInstance().setInfo(lessonInfo4[LessonData.getInstance().getCounter()]);
+            LessonData.getInstance().setLessonUrl("");
         }
 
 
 
     }
-
 
     public void onClick(View v){
 
@@ -107,7 +112,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
             if (LessonData.getInstance().getCounter() < 8) {
 
-                LessonData.getInstance().setCounter(1);
+                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartOne());
                 //ft.addToBackStack(null);
