@@ -78,7 +78,7 @@ public class JsonDownload {
             }
         }
         catch (Exception e) {
-            Log.e("Error", e.getMessage());
+            Log.e("Error Error", e.getMessage());
             e.printStackTrace();
         }
         return partDataList;
