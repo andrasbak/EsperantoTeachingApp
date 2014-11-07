@@ -1,10 +1,14 @@
 package com.example.andras.esperantoapp;
 
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -36,7 +41,7 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
 
         button = (Button)lessonPart2.findViewById(R.id.buttonPart2);
         button.setOnClickListener(this);
-        button.setVisibility(View.INVISIBLE);
+        //button.setVisibility(View.INVISIBLE);
         button1 = (Button)lessonPart2.findViewById(R.id.buttonPart2_1);
         button1.setOnClickListener(this);
         button2 = (Button)lessonPart2.findViewById(R.id.buttonPart2_2);
@@ -46,6 +51,7 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
         imageView = (ImageView)lessonPart2.findViewById(R.id.imageViewPart2);
         titleView = (TextView)lessonPart2.findViewById(R.id.titlePart2);
 
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataFromJson();
 
@@ -55,18 +61,23 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
 
             @Override
             protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().getLessonUrl().toString());
+                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().
+                        getLessonUrl());
                 return null;
             }
             @Override
             protected void onPostExecute(Object o) {
                 System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                PartData l = res.get(LessonData.getInstance().getCounter());
+                PartData l = res.get(LessonData.getInstance().getDataCounter());
+
+                new DownloadImageTask(imageView).execute(l.getPicture());
+
                 titleView.setText(l.getTitle());
                 button1.setText(l.getChoise1());
                 button2.setText(l.getChoise2());
                 button3.setText(l.getChoise3());
                 LessonData.getInstance().setCorrect(l.getCorrect());
+
             }
         }.execute();
 
@@ -77,7 +88,7 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
 
         if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
             LessonData.getInstance().setInfo(lessonInfo1[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=KfVJNjrX");
+            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=rSXM8DY3");
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 2")) {
             LessonData.getInstance().setInfo(lessonInfo2[LessonData.getInstance().getCounter()]);
@@ -96,23 +107,25 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
     public void onClick(View v){
 
         if(v.equals(button1)){
-            if(button1.getText()==LessonData.getInstance().getCorrect()){
+            if(button1.getText().toString()==LessonData.getInstance().getCorrect()){
                 button.setVisibility(View.VISIBLE);
             }
         }
         else if(v.equals(button2)){
-            if(button2.getText()==LessonData.getInstance().getCorrect()){
+            if(button2.getText().toString()==LessonData.getInstance().getCorrect()){
                 button.setVisibility(View.VISIBLE);
             }
         }
         else if(v.equals(button3)){
-            if(button3.getText()==LessonData.getInstance().getCorrect()){
+            if(button3.getText().toString()==LessonData.getInstance().getCorrect()){
                 button.setVisibility(View.VISIBLE);
             }
         }
         else if(v.equals(button)){
             if (LessonData.getInstance().getCounter() < 4) {
-                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter()+1);
+                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter() + 1);
+                LessonData.getInstance().setDataCounter(LessonData.getInstance().
+                        getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartTwo());
                 //ft.addToBackStack(null);
@@ -120,11 +133,39 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
             }
             else{
                 LessonData.getInstance().setCounter(0);
+                LessonData.getInstance().setDataCounter(LessonData.getInstance().
+                        getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartThree());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
         }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+
     }
 }
