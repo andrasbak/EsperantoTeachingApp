@@ -41,7 +41,7 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
 
         button = (Button)lessonPart2.findViewById(R.id.buttonPart2);
         button.setOnClickListener(this);
-        //button.setVisibility(View.INVISIBLE);
+        button.setVisibility(View.INVISIBLE);
         button1 = (Button)lessonPart2.findViewById(R.id.buttonPart2_1);
         button1.setOnClickListener(this);
         button2 = (Button)lessonPart2.findViewById(R.id.buttonPart2_2);
@@ -107,17 +107,23 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
     public void onClick(View v){
 
         if(v.equals(button1)){
-            if(button1.getText().toString()==LessonData.getInstance().getCorrect()){
+            System.out.println("Button Text: " + button1.getText().toString()+"\n"+"Correct: "+LessonData.getInstance().getCorrect().toString());
+            //button1.getText().toString() == LessonData.getInstance().getCorrect().toString()
+
+            if( button1.getText().toString() == LessonData.getInstance().getCorrect().toString()){
+                System.out.println("Hej");
                 button.setVisibility(View.VISIBLE);
             }
+            else{
+                System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button2)){
-            if(button2.getText().toString()==LessonData.getInstance().getCorrect()){
+            if(button2.getText().toString() == LessonData.getInstance().getCorrect().toString()){
                 button.setVisibility(View.VISIBLE);
             }
         }
         else if(v.equals(button3)){
-            if(button3.getText().toString()==LessonData.getInstance().getCorrect()){
+            if(button3.getText().toString() == LessonData.getInstance().getCorrect().toString()){
                 button.setVisibility(View.VISIBLE);
             }
         }

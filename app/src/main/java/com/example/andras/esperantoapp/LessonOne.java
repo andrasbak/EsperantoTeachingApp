@@ -26,12 +26,10 @@ public class LessonOne extends Fragment implements View.OnClickListener {
 
         LessonData.getInstance().setDataCounter(0);
 
+
         return lessonOne;
 
     }
-
-
-
 
 
     public void onClick(View v){
@@ -39,7 +37,6 @@ public class LessonOne extends Fragment implements View.OnClickListener {
         if(v == button){
 
             LessonData.getInstance().setLessonNumber(textView.getText().toString());
-
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
             //android.R.animator.fade_in, android.R.animator.fade_out);

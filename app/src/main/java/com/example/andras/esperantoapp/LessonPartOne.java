@@ -72,7 +72,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             @Override
             protected void onPostExecute(Object o) {
                 System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                System.out.println("Counter: "+LessonData.getInstance().getDataCounter());
+                System.out.println("Data Counter: "+LessonData.getInstance().getDataCounter());
                 final PartData l = res.get(LessonData.getInstance().getDataCounter());
 
                 new DownloadImageTask(imageView).execute(l.getPicture());
