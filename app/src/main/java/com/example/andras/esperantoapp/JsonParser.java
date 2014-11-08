@@ -23,13 +23,7 @@ public class JsonParser {
 
         // Download JSON data from URL
         try {
-       /*
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost(url);
-            HttpResponse response = httpclient.execute(httppost);
-            HttpEntity entity = response.getEntity();
-            is = entity.getContent();
-        */
+
           String lokalHentetFil = FilCache.hentFil(url, false);
           is = new FileInputStream(lokalHentetFil);
 

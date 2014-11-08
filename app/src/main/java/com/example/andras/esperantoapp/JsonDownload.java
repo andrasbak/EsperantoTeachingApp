@@ -72,13 +72,10 @@ public class JsonDownload {
             partData.setWord5(jsonObject.optString("word5"));
             partData.setWord6(jsonObject.optString("word6"));
 
-
-
             partDataList.add(partData);
             }
         }
         catch (Exception e) {
-            Log.e("Error Error", e.getMessage());
             e.printStackTrace();
         }
         return partDataList;

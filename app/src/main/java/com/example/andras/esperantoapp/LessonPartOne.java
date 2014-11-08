@@ -1,10 +1,14 @@
 package com.example.andras.esperantoapp;
 
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class LessonPartOne extends Fragment implements View.OnClickListener {
@@ -30,7 +36,6 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             "317", "318", "319"};
     private String[] lessonInfo4 = {"411", "412", "413", "414", "415", "416",
             "417", "418", "419"};
-    String title, phrase, sound, picture;
 
 
     @Override
@@ -47,6 +52,9 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         button = (Button)lessonpart1.findViewById(R.id.buttonPart1);
         button.setOnClickListener(this);
         button.setVisibility(View.INVISIBLE);
+
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         dataFromJson();
 
 
@@ -56,16 +64,22 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
             @Override
             protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().getLessonUrl().toString());
+                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().
+                        getLessonUrl());
                 return null;
             }
 
             @Override
             protected void onPostExecute(Object o) {
                 System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                PartData l = res.get(LessonData.getInstance().getCounter());
+                System.out.println("Counter: "+LessonData.getInstance().getDataCounter());
+                final PartData l = res.get(LessonData.getInstance().getDataCounter());
+
+                new DownloadImageTask(imageView).execute(l.getPicture());
+
                 titleView.setText(l.getTitle());
                 textView.setText(l.getPhrase());
+
 
                 
             }
@@ -80,7 +94,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
         if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
             LessonData.getInstance().setInfo(lessonInfo1[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=KfVJNjrX");
+            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=rSXM8DY3");
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 2")) {
             LessonData.getInstance().setInfo(lessonInfo2[LessonData.getInstance().getCounter()]);
@@ -112,6 +126,8 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             if (LessonData.getInstance().getCounter() < 8) {
 
                 LessonData.getInstance().setCounter(LessonData.getInstance().getCounter() + 1);
+                LessonData.getInstance().setDataCounter(LessonData.getInstance().
+                        getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartOne());
                 //ft.addToBackStack(null);
@@ -119,6 +135,8 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             }
             else{
                 LessonData.getInstance().setCounter(0);
+                LessonData.getInstance().setDataCounter(LessonData.getInstance().
+                        getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(android.R.id.content, new LessonPartTwo());
                 //ft.addToBackStack(null);
@@ -127,6 +145,32 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
         }
 
+
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
 
     }
 

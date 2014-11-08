@@ -21,6 +21,9 @@ public class LessonTwo extends Fragment implements View.OnClickListener {
         View lessonTwo = inflater.inflate(R.layout.fragment_lesson_two, container, false);
         textView = (TextView)lessonTwo.findViewById(R.id.textView);
         button = (Button)lessonTwo.findViewById(R.id.buttonl2);
+
+        LessonData.getInstance().setDataCounter(0);
+
         return lessonTwo;
 
 
@@ -28,7 +31,19 @@ public class LessonTwo extends Fragment implements View.OnClickListener {
 
     public void onClick(View v){
 
+        if(v == button){
 
+            LessonData.getInstance().setLessonNumber(textView.getText().toString());
+
+            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+            //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
+            //android.R.animator.fade_in, android.R.animator.fade_out);
+
+            ft.replace(android.R.id.content, new LessonPartOne());
+            ft.addToBackStack(null);
+            ft.commit();
+
+        }
 
     }
 

@@ -15,7 +15,8 @@
         android:id="@+id/titlePart3"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#ff000000" />
 
     <Button
         android:layout_width="wrap_content"
@@ -27,19 +28,19 @@
         android:textStyle="bold"
         android:textColor="#ffffffff"
         android:padding="5dp"
-        android:layout_marginBottom="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textViewPart3" />
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/textViewPart3"
         android:layout_marginTop="127dp"
         android:layout_below="@+id/titlePart3"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff000000" />
 
     <LinearLayout
         android:layout_width="match_parent"

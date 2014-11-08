@@ -21,6 +21,9 @@ public class LessonThree extends Fragment implements View.OnClickListener {
         View lessonThree = inflater.inflate(R.layout.fragment_lesson_three, container, false);
         textView = (TextView)lessonThree.findViewById(R.id.textView);
         button = (Button)lessonThree.findViewById(R.id.buttonl3);
+
+        LessonData.getInstance().setDataCounter(0);
+
         return lessonThree;
 
     }
@@ -29,11 +32,13 @@ public class LessonThree extends Fragment implements View.OnClickListener {
 
         if(v == button){
 
+            LessonData.getInstance().setLessonNumber(textView.getText().toString());
+
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
             //android.R.animator.fade_in, android.R.animator.fade_out);
 
-            ft.replace(android.R.id.content, new LessonPartThree());
+            ft.replace(android.R.id.content, new LessonPartOne());
             ft.addToBackStack(null);
             ft.commit();
 

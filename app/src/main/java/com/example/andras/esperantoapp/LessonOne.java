@@ -23,6 +23,9 @@ public class LessonOne extends Fragment implements View.OnClickListener {
         textView = (TextView)lessonOne.findViewById(R.id.textView);
         button = (Button)lessonOne.findViewById(R.id.buttonl1);
         button.setOnClickListener(this);
+
+        LessonData.getInstance().setDataCounter(0);
+
         return lessonOne;
 
     }
@@ -33,8 +36,6 @@ public class LessonOne extends Fragment implements View.OnClickListener {
 
     public void onClick(View v){
 
-
-        System.out.println("hej");
         if(v == button){
 
             LessonData.getInstance().setLessonNumber(textView.getText().toString());

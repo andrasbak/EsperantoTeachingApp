@@ -9,6 +9,8 @@ public class LessonData {
 
 
     private int counter = 0;
+    private int dataCounter;
+
     private static LessonData lessonData;
 
     private LessonData(){}
@@ -37,6 +39,13 @@ public class LessonData {
     }
     public int getCounter(){
         return counter;
+    }
+
+    public void setDataCounter(int dataCount){
+        dataCounter = dataCount;
+    }
+    public int getDataCounter(){
+        return dataCounter;
     }
 
     public void setLessonNumber(String lesson){
