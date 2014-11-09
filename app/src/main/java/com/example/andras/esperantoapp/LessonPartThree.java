@@ -100,14 +100,20 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
     public void onClick(View v){
 
         if(v.equals(button1)){
-            if(button1.getText()==LessonData.getInstance().getCorrect()){
+            if(button1.getText().toString().equals(LessonData.getInstance().
+                    getCorrect().toString())){
                 buttonContinue.setVisibility(View.VISIBLE);
             }
+            else{
+                System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button2)){
-            if(button2.getText()==LessonData.getInstance().getCorrect()){
+            if(button2.getText().toString().equals(LessonData.getInstance().
+                    getCorrect().toString())){
                 buttonContinue.setVisibility(View.VISIBLE);
             }
+            else{
+                System.out.println("Answer Incorrect!");}
         }
 
         else if(v.equals(buttonContinue)){
@@ -116,7 +122,7 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartTwo());
+                ft.replace(android.R.id.content, new LessonPartThree());
                 //ft.addToBackStack(null);
                 ft.commit();
             }

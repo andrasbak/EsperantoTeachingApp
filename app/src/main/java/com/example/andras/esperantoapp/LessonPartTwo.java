@@ -110,7 +110,8 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
             System.out.println("Button Text: " + button1.getText().toString()+"\n"+"Correct: "+LessonData.getInstance().getCorrect().toString());
             //button1.getText().toString() == LessonData.getInstance().getCorrect().toString()
 
-            if( button1.getText().toString() == LessonData.getInstance().getCorrect().toString()){
+            if( button1.getText().toString().equals(LessonData.getInstance().
+                    getCorrect().toString())){
                 System.out.println("Hej");
                 button.setVisibility(View.VISIBLE);
             }
@@ -118,14 +119,20 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
                 System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button2)){
-            if(button2.getText().toString() == LessonData.getInstance().getCorrect().toString()){
+            if(button2.getText().toString().equals(LessonData.getInstance().
+                    getCorrect().toString())){
                 button.setVisibility(View.VISIBLE);
             }
+            else{
+                System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button3)){
-            if(button3.getText().toString() == LessonData.getInstance().getCorrect().toString()){
+            if(button3.getText().toString().equals(LessonData.getInstance().
+                    getCorrect().toString())){
                 button.setVisibility(View.VISIBLE);
             }
+            else{
+                System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button)){
             if (LessonData.getInstance().getCounter() < 4) {
