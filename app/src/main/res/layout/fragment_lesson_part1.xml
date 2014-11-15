@@ -52,6 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:id="@+id/imageViewPart1"
+                android:src="@drawable/eks_elephant_85656_640"
                 android:layout_weight="0.60" />
 
             <View
@@ -90,6 +91,7 @@
                 android:id="@+id/phrasePart1"
                 android:layout_weight="0.50"
                 android:gravity="center"
+                android:text="Eksempel: Elefanto estas besto. "
                 android:textColor="#ff000000" />
 
             <View
