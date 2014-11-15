@@ -1,29 +1,105 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.LessonTwo"
-    android:background="#ffffffff">
+    tools:context="com.example.andras.esperantoapp.LessonOne"
+    android:background="#ffffffff"
+    android:weightSum="1"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Lesson 2"
-        android:id="@+id/textView"
-        android:layout_marginTop="110dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ff000000" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:text="Begin"
-        android:id="@+id/buttonl2"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp" />
-</RelativeLayout>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.35"></View>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.30"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.35"></View>
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageViewl2"
+                android:layout_weight="0.30"
+                android:src="@drawable/esperanto_logo" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.35"></View>
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.35"></View>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.70"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20"></View>
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/buttonl2"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.60"
+                android:background="#ff37cf5c"
+                android:textSize="30dp"
+                android:textColor="#ffffffff" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.20"></View>
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"></View>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

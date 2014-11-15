@@ -1,6 +1,8 @@
 package com.example.andras.esperantoapp;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -72,37 +76,30 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
 
         if(v.equals(button1)){
             if(button1.getText().equals(LessonData.getInstance().getCorrect())){
+                dialog();
             }
             else{
-                System.out.println("Answer Incorrect!");}
+                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();}
         }
         else if(v.equals(button2)){
             if(button2.getText().equals(LessonData.getInstance().getCorrect())){
+                dialog();
             }
             else{
-                System.out.println("Answer Incorrect!");}
+                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();}
         }
+    }
 
-        else if(v.equals(buttonContinue)){
-            if (LessonData.getInstance().getCounter() < 4) {
-                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter()+1);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeDemando());
-                //ft.addToBackStack(null);
-                ft.commit();
+    public void dialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Correct!");
+        dialog.setPositiveButton("Continue", new AlertDialog.OnClickListener() {
+
+            public void onClick(DialogInterface arg0, int arg1) {
+
             }
-            else{
-                LessonData.getInstance().setCounter(0);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeDemando());
-                //ft.addToBackStack(null);
-                ft.commit();
-            }
-        }
+        });
+        dialog.show();
     }
 
 }

@@ -19,8 +19,9 @@ public class LessonThree extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View lessonThree = inflater.inflate(R.layout.fragment_lesson_three, container, false);
-        textView = (TextView)lessonThree.findViewById(R.id.textView);
         button = (Button)lessonThree.findViewById(R.id.buttonl3);
+        button.setOnClickListener(this);
+        button.setText("Lesson 3" + "\n" + "\n" + "\n" + "Begin");
 
         LessonData.getInstance().setDataCounter(0);
 

@@ -1,6 +1,8 @@
 package com.example.andras.esperantoapp;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +32,7 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     ImageView imageView;
     ImageButton imageButton;
     TextView textView, titleView;
-    final MediaPlayer mp = null;
+    MediaPlayer mp = new MediaPlayer();
 
     private String[] lessonInfo1 = {"111", "112", "113", "114", "115", "116",
             "117", "118", "119"};
@@ -39,30 +43,23 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     private String[] lessonInfo4 = {"411", "412", "413", "414", "415", "416",
             "417", "418", "419"};
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View lessonpart1 = inflater.inflate(R.layout.fragment_lesson_part1, container, false);
-
         imageView = (ImageView)lessonpart1.findViewById(R.id.imageViewPart1);
         imageButton = (ImageButton)lessonpart1.findViewById(R.id.imageButtonPart1);
         imageButton.setOnClickListener(this);
         textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
         titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
 
-
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataFromJson();
 
-
-
         return lessonpart1;
-
     }
-
     public void dataFromJson(){
 
         if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
@@ -82,44 +79,31 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
             LessonData.getInstance().setInfo(lessonInfo4[LessonData.getInstance().getCounter()]);
             LessonData.getInstance().setLessonUrl("");
         }
-
     }
-
     public void onClick(View v){
 
         if(v.equals(imageButton)){
 
             mp.start();
             while(mp.isPlaying()){}
-
-
-        }
-
-        else if(v.equals(button)){
-
-            if (LessonData.getInstance().getCounter() < 8) {
-
-                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter() + 1);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeFrazo());
-                //ft.addToBackStack(null);
-                ft.commit();
-            }
-            else{
-                LessonData.getInstance().setCounter(0);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeBildoDemando());
-                //ft.addToBackStack(null);
-                ft.commit();
-            }
+            dialog();
 
         }
-
     }
+
+    public void dialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Correct!");
+        dialog.setPositiveButton("Continue", new AlertDialog.OnClickListener() {
+
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+        dialog.show();
+    }
+
+
 /*
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
         ImageView bmImage;
@@ -146,28 +130,5 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
             bmImage.setImageBitmap(result);
         }
 
-    }
-
-    private class DownloadSoundTask extends AsyncTask{
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-
-            FileInputStream is = null;
-            try {
-                System.out.println("hej1");
-                String lokalHentetFil = FilCache.hentFil(LessonData.getInstance().getSoundUrl(), true);
-                is = new FileInputStream(lokalHentetFil);
-                mp.setDataSource(is.getFD());
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-    }   */
-
+    } */
 }

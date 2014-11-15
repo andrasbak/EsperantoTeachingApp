@@ -1,6 +1,8 @@
 package com.example.andras.esperantoapp;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -76,49 +80,43 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         }
     }
 
-    public void onClick(View v){
+    public void onClick(View v) {
 
-        if(v.equals(button1)){
+        if (v.equals(button1)) {
 
-            if( button1.getText().equals(LessonData.getInstance().getCorrect())){
-                System.out.println("Hej");
+            if (button1.getText().equals(LessonData.getInstance().getCorrect())) {
+                dialog();
+            } else {
+                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
             }
-            else{
-                System.out.println("Answer Incorrect!");}
-        }
-        else if(v.equals(button2)){
-            if(button2.getText().equals(LessonData.getInstance().getCorrect())){
+        } else if (v.equals(button2)) {
+            if (button2.getText().equals(LessonData.getInstance().getCorrect())) {
+                dialog();
+            } else {
+                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
             }
-            else{
-                System.out.println("Answer Incorrect!");}
-        }
-        else if(v.equals(button3)){
-            if(button3.getText().equals(LessonData.getInstance().getCorrect())){
-            }
-            else{
-                System.out.println("Answer Incorrect!");}
-        }
-        else if(v.equals(button)){
-            if (LessonData.getInstance().getCounter() < 4) {
-                LessonData.getInstance().setCounter(LessonData.getInstance().getCounter() + 1);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeBildoDemando());
-                //ft.addToBackStack(null);
-                ft.commit();
-            }
-            else{
-                LessonData.getInstance().setCounter(0);
-                LessonData.getInstance().setDataCounter(LessonData.getInstance().
-                        getDataCounter() + 1);
-                final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new ScreenTypeDemando());
-                //ft.addToBackStack(null);
-                ft.commit();
+        } else if (v.equals(button3)) {
+            if (button3.getText().equals(LessonData.getInstance().getCorrect())) {
+                dialog();
+            } else {
+                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
             }
         }
     }
+
+    public void dialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Correct!");
+        dialog.setPositiveButton("Continue", new AlertDialog.OnClickListener() {
+
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+        dialog.show();
+    }
+
+
 
 }
 

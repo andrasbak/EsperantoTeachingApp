@@ -1,142 +1,174 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.ScreenTypeDemando"
+    tools:context="com.example.andras.esperantoapp.ScreenTypeBildoDemando"
+    android:weightSum="1"
+    android:orientation="vertical"
     android:background="#ffffffff"
     android:windowActionBar="false">
 
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/titlePart3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:textColor="#ff000000" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Continue"
-        android:id="@+id/buttonPart3"
-        android:textSize="25dp"
-        android:background="#ff2bdf26"
-        android:textStyle="bold"
-        android:textColor="#ffffffff"
-        android:padding="5dp"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textViewPart3"
-        android:layout_marginTop="127dp"
-        android:layout_below="@+id/titlePart3"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ff000000" />
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/textViewPart3"
-        android:id="@+id/linearLayout">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"></View>
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="0.40"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonPart1"
-            android:src="@drawable/listen"
-            android:background="#ffffffff"
-            android:layout_marginTop="20dp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"></View>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/linearLayout"
-        android:id="@+id/linearLayout2"
-        android:layout_marginTop="20dp">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"></View>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="0.50"
-            android:id="@+id/buttonPart3_1"
-            android:background="#ff4bea3c"
-            android:textColor="#ffffffff"
-            android:textSize="22dp"
-            android:text="Jes" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"></View>
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/linearLayout3">
+        android:layout_height="0dp"
+        android:id="@+id/linearLayout"
+        android:layout_weight="0.4"
+        android:weightSum="1">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"></View>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="0.50"
-            android:id="@+id/buttonPart3_2"
-            android:background="#ffff6f6f"
-            android:textColor="#ffffffff"
-            android:textSize="22dp"
-            android:text="Ne" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/titlePart3"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
+                android:textColor="#ff000000"
+                android:gravity="center" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"></View>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"></View>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textViewPart3"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.60"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"></View>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:weightSum="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageButtonPart3"
+                android:layout_weight="0.50"
+                android:background="#ffffffff"
+                android:src="@drawable/listen" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:weightSum="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:layout_weight="0.50"
+                android:id="@+id/buttonPart3_1"
+                android:background="#ff4bea3c"
+                android:textColor="#ffffffff"
+                android:textSize="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Jes" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:weightSum="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:layout_weight="0.50"
+                android:id="@+id/buttonPart3_2"
+                android:background="#ffff6f6f"
+                android:textColor="#ffffffff"
+                android:textSize="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Ne" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+        </LinearLayout>
 
 
 
     </LinearLayout>
 
-</RelativeLayout>
 
-
+</LinearLayout>

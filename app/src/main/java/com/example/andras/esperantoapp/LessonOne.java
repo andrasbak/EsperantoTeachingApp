@@ -20,9 +20,9 @@ public class LessonOne extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState){
 
         View lessonOne = inflater.inflate(R.layout.fragment_lesson_one, container, false);
-        textView = (TextView)lessonOne.findViewById(R.id.textView);
         button = (Button)lessonOne.findViewById(R.id.buttonl1);
         button.setOnClickListener(this);
+        button.setText("Lesson 1" + "\n" + "\n" + "\n" + "Begin");
 
         LessonData.getInstance().setDataCounter(0);
 
@@ -36,7 +36,7 @@ public class LessonOne extends Fragment implements View.OnClickListener {
 
         if(v == button){
 
-            LessonData.getInstance().setLessonNumber(textView.getText().toString());
+            LessonData.getInstance().setLessonNumber("Lesson 1");
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
             //android.R.animator.fade_in, android.R.animator.fade_out);
