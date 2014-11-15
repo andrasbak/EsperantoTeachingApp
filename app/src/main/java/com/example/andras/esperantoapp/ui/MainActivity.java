@@ -3,10 +3,16 @@ package com.example.andras.esperantoapp.ui;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.example.andras.esperantoapp.App;
 import com.example.andras.esperantoapp.R;
+
+import org.json.JSONObject;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener{
@@ -31,10 +37,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        actionBar.addTab(actionBar.newTab().setText("Lesson 1").setTabListener(this));
-        actionBar.addTab(actionBar.newTab().setText("Lesson 2").setTabListener(this));
-        actionBar.addTab(actionBar.newTab().setText("Lesson 3").setTabListener(this));
-        actionBar.addTab(actionBar.newTab().setText("Lesson 4").setTabListener(this));
+
+        for (JSONObject l : App.lessons) {
+          String title = l.optString("title");
+          actionBar.addTab(actionBar.newTab().setText(title).setTabListener(this));
+        }
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
 
@@ -76,4 +83,40 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     }
 
 
+
+
+  /**
+   * Created by Andras on 17-10-2014.
+   */
+  public static class LessonsPagerAdapter extends FragmentPagerAdapter {
+
+    public LessonsPagerAdapter(FragmentManager fm) {
+      super(fm);
+
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+      return App.lessons.get(position).optString("title");
+    }
+
+    @Override
+    public Fragment getItem(int i) {
+
+      LessonFrag f = new LessonFrag();
+      Bundle b = new Bundle();
+      b.putInt("lesson", i);
+      f.setArguments(b);
+
+      return f;
+
+    }
+
+
+
+    @Override
+    public int getCount() {
+      return App.lessons.size(); //No of Tabs
+    }
+  }
 }

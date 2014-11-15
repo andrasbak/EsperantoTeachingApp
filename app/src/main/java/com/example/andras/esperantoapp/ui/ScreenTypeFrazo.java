@@ -17,6 +17,9 @@ import android.media.MediaPlayer;
 import com.example.andras.esperantoapp.R;
 import com.example.andras.esperantoapp.skrald.LessonData;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
     ImageView imageView;
@@ -24,16 +27,9 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     TextView textView, titleView;
     MediaPlayer mp = new MediaPlayer();
 
-    private String[] lessonInfo1 = {"111", "112", "113", "114", "115", "116",
-            "117", "118", "119"};
-    private String[] lessonInfo2 = {"211", "212", "213", "214", "215", "216",
-            "217", "218", "219"};
-    private String[] lessonInfo3 = {"311", "312", "313", "314", "315", "316",
-            "317", "318", "319"};
-    private String[] lessonInfo4 = {"411", "412", "413", "414", "415", "416",
-            "417", "418", "419"};
+  private JSONObject jsondata;
 
-    @Override
+  @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -44,31 +40,15 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
         titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
 
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    try {
+      jsondata = new JSONObject(getArguments().getString("jsondata"));
+      textView.setText(jsondata.optString("phrase"));
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
 
-        dataFromJson();
 
         return lessonpart1;
-    }
-    public void dataFromJson(){
-
-        if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
-            LessonData.getInstance().setInfo(lessonInfo1[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=rSXM8DY3");
-
-        }
-        else if(LessonData.getInstance().getLessonNumber().equals("Lesson 2")) {
-            LessonData.getInstance().setInfo(lessonInfo2[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("");
-        }
-        else if(LessonData.getInstance().getLessonNumber().equals("Lesson 3")) {
-            LessonData.getInstance().setInfo(lessonInfo3[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("");
-        }
-        else if(LessonData.getInstance().getLessonNumber().equals("Lesson 4")) {
-            LessonData.getInstance().setInfo(lessonInfo4[LessonData.getInstance().getCounter()]);
-            LessonData.getInstance().setLessonUrl("");
-        }
     }
     public void onClick(View v){
 

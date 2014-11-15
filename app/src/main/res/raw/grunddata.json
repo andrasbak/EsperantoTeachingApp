@@ -10,6 +10,10 @@
 			{
 				"url": "http://UGYLDIGpastebin.com/raw.php?i=rSXM8DY3#",
 				"fallback": "lesson1"
+			},
+			{
+				"url": "http://UGYLDIGpastebin",
+				"fallback": "lesson2"
 			}
 		]
 }

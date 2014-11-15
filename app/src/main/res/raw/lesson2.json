@@ -1,0 +1,22 @@
+{
+    "title": "Leciono du",
+    "parts": [
+        {
+            "title": "Parto 1",
+            "questions": [
+                {
+                    "type": "frazo",
+                    "phrase": "Leono estas besto.",
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/leono_estas_besto.mp3",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/11/26/20/21/lion-218918_640.jpg"
+                },
+                {
+                    "type": "frazo",
+                    "phrase": "Elefanto estas besto.",
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/elefanto_estas_besto.mp3",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/02/24/14/27/elephant-85656_640.jpg"
+                }
+            ]
+       }
+    ]
+}
