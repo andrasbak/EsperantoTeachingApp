@@ -5,8 +5,16 @@ package com.example.andras.esperantoapp;
  */
 public class PartData {
 
-    private String lessonPhrase, lessonSound, lessonPicture, lessonTitle, id, choiseOne, choiseTwo,
+    private String lessonPhrase, lessonSound, lessonPicture, lessonTitle, lessonType, choiseOne, choiseTwo,
             choiseThree, correctChoise, wordOne, wordTwo, wordThree, wordFour, wordFive, wordSix;
+
+
+    public void setType(String type){
+        lessonType = type;
+    }
+    public String getType(){
+        return lessonType;
+    }
 
     public void setPhrase(String phrase){
         lessonPhrase = phrase;

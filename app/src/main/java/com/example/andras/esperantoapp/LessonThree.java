@@ -38,7 +38,7 @@ public class LessonThree extends Fragment implements View.OnClickListener {
             //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
             //android.R.animator.fade_in, android.R.animator.fade_out);
 
-            ft.replace(android.R.id.content, new LessonPartOne());
+            ft.replace(android.R.id.content, new ScreenTypeFrazo());
             ft.addToBackStack(null);
             ft.commit();
 

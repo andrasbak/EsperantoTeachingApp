@@ -13,20 +13,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class LessonPartTwo extends Fragment implements View.OnClickListener {
+public class ScreenTypeBildoDemando extends Fragment implements View.OnClickListener {
 
 
     ImageView imageView;
     TextView titleView;
-    Button button, button1, button2, button3;
+    Button button1, button2, button3;
     private String[] lessonInfo1 = {"121", "122", "123", "124", "125"};
     private String[] lessonInfo2 = {"221", "222", "223", "224", "225"};
     private String[] lessonInfo3 = {"321", "322", "323", "324", "325"};
@@ -39,9 +39,6 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View lessonPart2 = inflater.inflate(R.layout.fragment_lesson_part2, container, false);
 
-        button = (Button)lessonPart2.findViewById(R.id.buttonPart2);
-        button.setOnClickListener(this);
-        button.setVisibility(View.INVISIBLE);
         button1 = (Button)lessonPart2.findViewById(R.id.buttonPart2_1);
         button1.setOnClickListener(this);
         button2 = (Button)lessonPart2.findViewById(R.id.buttonPart2_2);
@@ -55,31 +52,6 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
 
         dataFromJson();
 
-        new AsyncTask() {
-
-            public ArrayList<PartData> res;
-
-            @Override
-            protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().
-                        getLessonUrl());
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Object o) {
-                System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                PartData l = res.get(LessonData.getInstance().getDataCounter());
-
-                new DownloadImageTask(imageView).execute(l.getPicture());
-
-                titleView.setText(l.getTitle());
-                button1.setText(l.getChoise1());
-                button2.setText(l.getChoise2());
-                button3.setText(l.getChoise3());
-                LessonData.getInstance().setCorrect(l.getCorrect());
-
-            }
-        }.execute();
 
         return lessonPart2;
     }
@@ -107,29 +79,21 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
     public void onClick(View v){
 
         if(v.equals(button1)){
-            System.out.println("Button Text: " + button1.getText().toString()+"\n"+"Correct: "+LessonData.getInstance().getCorrect().toString());
-            //button1.getText().toString() == LessonData.getInstance().getCorrect().toString()
 
-            if( button1.getText().toString().equals(LessonData.getInstance().
-                    getCorrect().toString())){
+            if( button1.getText().equals(LessonData.getInstance().getCorrect())){
                 System.out.println("Hej");
-                button.setVisibility(View.VISIBLE);
             }
             else{
                 System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button2)){
-            if(button2.getText().toString().equals(LessonData.getInstance().
-                    getCorrect().toString())){
-                button.setVisibility(View.VISIBLE);
+            if(button2.getText().equals(LessonData.getInstance().getCorrect())){
             }
             else{
                 System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button3)){
-            if(button3.getText().toString().equals(LessonData.getInstance().
-                    getCorrect().toString())){
-                button.setVisibility(View.VISIBLE);
+            if(button3.getText().equals(LessonData.getInstance().getCorrect())){
             }
             else{
                 System.out.println("Answer Incorrect!");}
@@ -140,7 +104,7 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartTwo());
+                ft.replace(android.R.id.content, new ScreenTypeBildoDemando());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
@@ -149,36 +113,12 @@ public class LessonPartTwo extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartThree());
+                ft.replace(android.R.id.content, new ScreenTypeDemando());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-
-    }
 }
+

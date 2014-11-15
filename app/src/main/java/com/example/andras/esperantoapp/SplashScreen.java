@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +17,8 @@ import org.json.JSONObject;
 public class SplashScreen extends Activity {
 
     // Set Duration of the Splash Screen
-    long Delay = 1000;
+    long Delay = 5000;
+    private String[] lessonUrl = {"http://pastebin.com/raw.php?i=rSXM8DY3"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,42 @@ public class SplashScreen extends Activity {
 
         // Create a Timer
         Timer RunSplash = new Timer();
+
+        // Download and Parse JSON
+
+        new AsyncTask() {
+
+            public ArrayList<PartData> res;
+
+            @Override
+            protected Object doInBackground(Object... params) {
+
+                for(int i=0; i < lessonUrl.length; i++) {
+
+                    res = JsonDownload.getInstance().downloadJson(lessonUrl[i]);
+
+                }
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Object o){
+
+                new AsyncTask(){
+
+                    protected  Object doInBackground(Object... params){
+
+                        for(int i = 0; i < JsonDownload.getInstance().pictureSound.size(); i++) {
+
+                            JsonDownload.getInstance().downloadPictureSound();
+
+                        }
+                        return null;
+                    }
+                }.execute();
+            }
+        }.execute();
+
+
 
         // Task to do when the timer ends
         TimerTask ShowSplash = new TimerTask() {

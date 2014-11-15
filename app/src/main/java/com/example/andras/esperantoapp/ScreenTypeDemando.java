@@ -15,11 +15,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class LessonPartThree extends Fragment implements View.OnClickListener {
+public class ScreenTypeDemando extends Fragment implements View.OnClickListener {
 
 
     TextView textView, titleView;
-    Button button1, button2, buttonContinue ;
+    Button button1, button2;
 
     private String[] lessonInfo1 = {"131", "132", "133", "134", "135"};
     private String[] lessonInfo2 = {"231", "232", "233", "234", "235"};
@@ -32,9 +32,6 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View lessonPart3 = inflater.inflate(R.layout.fragment_lesson_part3, container, false);
 
-        buttonContinue = (Button)lessonPart3.findViewById(R.id.buttonPart3);
-        buttonContinue.setOnClickListener(this);
-        buttonContinue.setVisibility(View.INVISIBLE);
         button1 = (Button)lessonPart3.findViewById(R.id.buttonPart3_1);
         button1.setOnClickListener(this);
         button2 = (Button)lessonPart3.findViewById(R.id.buttonPart3_2);
@@ -45,32 +42,6 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataFromJson();
-
-        new AsyncTask() {
-
-            public ArrayList<PartData> res;
-
-            @Override
-            protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().
-                        getLessonUrl());
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Object o) {
-                System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                PartData l = res.get(LessonData.getInstance().getDataCounter());
-                titleView.setText(l.getTitle());
-                textView.setText(l.getPhrase());
-                button1.setText(l.getChoise1());
-                button2.setText(l.getChoise2());
-
-                LessonData.getInstance().setCorrect(l.getCorrect());
-
-            }
-
-        }.execute();
 
 
         return lessonPart3;
@@ -100,17 +71,13 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
     public void onClick(View v){
 
         if(v.equals(button1)){
-            if(button1.getText().toString().equals(LessonData.getInstance().
-                    getCorrect().toString())){
-                buttonContinue.setVisibility(View.VISIBLE);
+            if(button1.getText().equals(LessonData.getInstance().getCorrect())){
             }
             else{
                 System.out.println("Answer Incorrect!");}
         }
         else if(v.equals(button2)){
-            if(button2.getText().toString().equals(LessonData.getInstance().
-                    getCorrect().toString())){
-                buttonContinue.setVisibility(View.VISIBLE);
+            if(button2.getText().equals(LessonData.getInstance().getCorrect())){
             }
             else{
                 System.out.println("Answer Incorrect!");}
@@ -122,7 +89,7 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartThree());
+                ft.replace(android.R.id.content, new ScreenTypeDemando());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
@@ -131,7 +98,7 @@ public class LessonPartThree extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartThree());
+                ft.replace(android.R.id.content, new ScreenTypeDemando());
                 //ft.addToBackStack(null);
                 ft.commit();
             }

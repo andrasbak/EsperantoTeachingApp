@@ -16,18 +16,20 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.media.MediaPlayer;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class LessonPartOne extends Fragment implements View.OnClickListener {
-
+public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
     ImageView imageView;
     ImageButton imageButton;
     TextView textView, titleView;
-    Button button;
+    final MediaPlayer mp = null;
+
     private String[] lessonInfo1 = {"111", "112", "113", "114", "115", "116",
             "117", "118", "119"};
     private String[] lessonInfo2 = {"211", "212", "213", "214", "215", "216",
@@ -49,42 +51,13 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         imageButton.setOnClickListener(this);
         textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
         titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
-        button = (Button)lessonpart1.findViewById(R.id.buttonPart1);
-        button.setOnClickListener(this);
-        button.setVisibility(View.INVISIBLE);
+
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataFromJson();
 
 
-        new AsyncTask() {
-
-            public ArrayList<PartData> res;
-
-            @Override
-            protected Object doInBackground(Object... params) {
-                res = JsonDownload.getInstance().downloadJson(LessonData.getInstance().
-                        getLessonUrl());
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Object o) {
-                System.out.println("Counter: "+LessonData.getInstance().getCounter());
-                System.out.println("Data Counter: "+LessonData.getInstance().getDataCounter());
-                final PartData l = res.get(LessonData.getInstance().getDataCounter());
-
-                new DownloadImageTask(imageView).execute(l.getPicture());
-
-                titleView.setText(l.getTitle());
-                textView.setText(l.getPhrase());
-
-
-                
-            }
-
-        }.execute();
 
         return lessonpart1;
 
@@ -95,6 +68,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
         if(LessonData.getInstance().getLessonNumber().equals("Lesson 1")) {
             LessonData.getInstance().setInfo(lessonInfo1[LessonData.getInstance().getCounter()]);
             LessonData.getInstance().setLessonUrl("http://pastebin.com/raw.php?i=rSXM8DY3");
+
         }
         else if(LessonData.getInstance().getLessonNumber().equals("Lesson 2")) {
             LessonData.getInstance().setInfo(lessonInfo2[LessonData.getInstance().getCounter()]);
@@ -109,15 +83,15 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
             LessonData.getInstance().setLessonUrl("");
         }
 
-
-
     }
 
     public void onClick(View v){
 
         if(v.equals(imageButton)){
 
-            button.setVisibility(View.VISIBLE);
+            mp.start();
+            while(mp.isPlaying()){}
+
 
         }
 
@@ -129,7 +103,7 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartOne());
+                ft.replace(android.R.id.content, new ScreenTypeFrazo());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
@@ -138,29 +112,29 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
                 LessonData.getInstance().setDataCounter(LessonData.getInstance().
                         getDataCounter() + 1);
                 final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(android.R.id.content, new LessonPartTwo());
+                ft.replace(android.R.id.content, new ScreenTypeBildoDemando());
                 //ft.addToBackStack(null);
                 ft.commit();
             }
 
         }
 
-
     }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+/*
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
         ImageView bmImage;
+        InputStream is = null;
 
         public DownloadImageTask(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
         protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
             Bitmap mIcon11 = null;
             try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
+                String lokalHentetFil = FilCache.hentFil(LessonData.getInstance().getPictureUrl(), true);
+                is = new FileInputStream(lokalHentetFil);
+                mIcon11 = BitmapFactory.decodeStream(is);
             } catch (Exception e) {
                 Log.e("Error", e.getMessage());
                 e.printStackTrace();
@@ -174,6 +148,26 @@ public class LessonPartOne extends Fragment implements View.OnClickListener {
 
     }
 
+    private class DownloadSoundTask extends AsyncTask{
 
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            FileInputStream is = null;
+            try {
+                System.out.println("hej1");
+                String lokalHentetFil = FilCache.hentFil(LessonData.getInstance().getSoundUrl(), true);
+                is = new FileInputStream(lokalHentetFil);
+                mp.setDataSource(is.getFD());
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }   */
 
 }

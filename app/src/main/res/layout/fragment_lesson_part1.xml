@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.LessonPartOne"
-    android:background="#ffffffff">
+    tools:context="com.example.andras.esperantoapp.ScreenTypeFrazo"
+    android:background="#ffffffff"
+    android:windowActionBar="false">
 
 
     <ImageView
@@ -72,6 +73,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+
         android:textColor="#ff000000"
         android:textSize="15dp" />
 

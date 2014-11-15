@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.LessonPartThree"
-    android:background="#ffffffff">
+    tools:context="com.example.andras.esperantoapp.ScreenTypeDemando"
+    android:background="#ffffffff"
+    android:windowActionBar="false">
 
 
 
@@ -16,6 +17,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:textColor="#ff000000" />
 
     <Button
@@ -106,6 +109,8 @@
         android:layout_below="@+id/linearLayout2"
         android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:id="@+id/linearLayout3">
 
         <View

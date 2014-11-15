@@ -5,7 +5,7 @@ package com.example.andras.esperantoapp;
  */
 public class LessonData {
 
-    private String infoFromJson, lessonNumber, lessonUrl, correctAnswer;
+    private String infoFromJson, lessonNumber, lessonUrl, correctAnswer, pictureUrl, soundUrl;
 
 
     private int counter = 0;
@@ -67,5 +67,19 @@ public class LessonData {
     }
     public String getCorrect(){
         return correctAnswer;
+    }
+
+    public void setPictureUrl(String pUrl){
+        pictureUrl = pUrl;
+    }
+    public String getPictureUrl(){
+        return pictureUrl;
+    }
+
+    public void setSoundUrl(String sUrl){
+        soundUrl = sUrl;
+    }
+    public String getSoundUrl(){
+        return soundUrl;
     }
 }
