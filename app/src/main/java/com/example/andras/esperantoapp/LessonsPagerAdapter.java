@@ -22,13 +22,13 @@ public class LessonsPagerAdapter extends FragmentPagerAdapter {
         switch(i){
 
             case 0:
-                return new LessonOne();
+                return new Lesson1Frag();
             case 1:
-                return new LessonTwo();
+                return new Lesson2Frag();
             case 2:
-                return new LessonThree();
+                return new Lesson3Frag();
             case 3:
-                return new LessonFour();
+                return new Lesson4Frag();
 
         }
 

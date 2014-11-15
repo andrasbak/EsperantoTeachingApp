@@ -11,32 +11,30 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LessonOne extends Fragment implements View.OnClickListener {
+public class Lesson3Frag extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button button;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        View lessonOne = inflater.inflate(R.layout.fragment_lesson_one, container, false);
-        button = (Button)lessonOne.findViewById(R.id.buttonl1);
+        View lessonThree = inflater.inflate(R.layout.fragment_lesson_three, container, false);
+        button = (Button)lessonThree.findViewById(R.id.buttonl3);
         button.setOnClickListener(this);
-        button.setText("Lesson 1" + "\n" + "\n" + "\n" + "Begin");
+        button.setText("Lesson 3" + "\n" + "\n" + "\n" + "Begin");
 
         LessonData.getInstance().setDataCounter(0);
 
-
-        return lessonOne;
+        return lessonThree;
 
     }
-
 
     public void onClick(View v){
 
         if(v == button){
 
-            LessonData.getInstance().setLessonNumber("Lesson 1");
+            LessonData.getInstance().setLessonNumber(textView.getText().toString());
+
             final FragmentTransaction ft = getFragmentManager().beginTransaction();
             //.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out,
             //android.R.animator.fade_in, android.R.animator.fade_out);
@@ -47,7 +45,7 @@ public class LessonOne extends Fragment implements View.OnClickListener {
 
         }
 
-       }
+    }
 
 
 }

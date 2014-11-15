@@ -24,7 +24,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(lessonsPagerAdapter);
-        viewPager.setPageMargin(-250);
+      //  viewPager.setPageMargin(-250);
 
         actionBar = getActionBar();
 

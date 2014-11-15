@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LessonTwo extends Fragment implements View.OnClickListener {
+public class Lesson2Frag extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button button;

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LessonFour extends Fragment implements View.OnClickListener {
+public class Lesson4Frag extends Fragment implements View.OnClickListener {
 
     TextView textView;
     Button button;
