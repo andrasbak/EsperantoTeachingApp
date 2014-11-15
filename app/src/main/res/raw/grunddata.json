@@ -1,0 +1,15 @@
+{
+    "kontakt_modtagere": ["android@lundogbendsen.dk", "mobil@dr.dk" ],
+    "kontakt_url": "http://www.dr.dk/tjenester/iphone/radio/about/android30.drxml",
+    "kontakt_titel": "Angående DR Radio",
+    "kontakt_brugerspørgsmål": "\nHvis du oplever problemer, så vil vi meget gerne kontaktes.\nSkriv herunder\n-------------\n\n\n\n\n\n\n\n----- teknisk info til udviklerne -----\n\n",
+    "drift_statusmeddelelse": "",
+
+	"lessons":
+		[
+			{
+				"url": "http://UGYLDIGpastebin.com/raw.php?i=rSXM8DY3#",
+				"fallback": "lesson1"
+			}
+		]
+}

@@ -18,7 +18,6 @@ public class JsonParser {
 
     public static JSONObject getJSONfromURL(String url) {
         InputStream is = null;
-        String result = "";
         JSONObject jArray = null;
 
         // Download JSON data from URL
@@ -30,23 +29,10 @@ public class JsonParser {
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());
         }
+      String result = inputStreamToString(is);
 
-        // Convert response to string
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, "iso-8859-1"), 8);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            is.close();
-            result = sb.toString();
-        } catch (Exception e) {
-            Log.e("log_tag", "Error converting result " + e.toString());
-        }
 
-        try {
+      try {
 
             jArray = new JSONObject(result);
         } catch (JSONException e) {
@@ -55,4 +41,22 @@ public class JsonParser {
 
         return jArray;
     }
+
+  public static String inputStreamToString(InputStream is) {
+    String result = "";
+    // Convert response to string
+    try {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            sb.append(line + "\n");
+        }
+        is.close();
+        result = sb.toString();
+    } catch (Exception e) {
+        Log.e("log_tag", "Error converting result " + e.toString());
+    }
+    return result;
+  }
 }

@@ -106,7 +106,7 @@ public class JsonDownload {
 
             try {
                 lokalHentetFil = FilCache.hentFil(pictureSound.get(i), true);
-                is = new FileInputStream(lokalHentetFil);
+                //is = new FileInputStream(lokalHentetFil);
             }
             catch (IOException e) {
                 e.printStackTrace();
