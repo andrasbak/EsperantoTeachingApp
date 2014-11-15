@@ -1,11 +1,12 @@
-package com.example.andras.esperantoapp;
+package com.example.andras.esperantoapp.ui;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Window;
+
+import com.example.andras.esperantoapp.R;
 
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener{

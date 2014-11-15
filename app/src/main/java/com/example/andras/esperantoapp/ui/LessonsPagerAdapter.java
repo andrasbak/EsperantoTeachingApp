@@ -1,4 +1,4 @@
-package com.example.andras.esperantoapp;
+package com.example.andras.esperantoapp.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

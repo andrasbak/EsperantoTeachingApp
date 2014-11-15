@@ -1,31 +1,21 @@
-package com.example.andras.esperantoapp;
+package com.example.andras.esperantoapp.ui;
 
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.media.MediaPlayer;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+
+import com.example.andras.esperantoapp.R;
+import com.example.andras.esperantoapp.skrald.LessonData;
 
 public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 

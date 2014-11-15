@@ -1,4 +1,4 @@
-package com.example.andras.esperantoapp;
+package com.example.andras.esperantoapp.ui;
 
 
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.andras.esperantoapp.R;
+import com.example.andras.esperantoapp.skrald.LessonData;
 
 
 public class Lesson2Frag extends Fragment implements View.OnClickListener {

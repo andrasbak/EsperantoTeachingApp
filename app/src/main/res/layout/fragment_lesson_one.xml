@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.Lesson1Frag"
+    tools:context="com.example.andras.esperantoapp.ui.Lesson1Frag"
     android:background="#ffffffff"
     android:weightSum="1"
     android:orientation="vertical">

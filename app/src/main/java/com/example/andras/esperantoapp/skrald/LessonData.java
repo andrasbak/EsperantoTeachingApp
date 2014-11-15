@@ -1,4 +1,4 @@
-package com.example.andras.esperantoapp;
+package com.example.andras.esperantoapp.skrald;
 
 /**
  * Created by Andras on 27-10-2014.

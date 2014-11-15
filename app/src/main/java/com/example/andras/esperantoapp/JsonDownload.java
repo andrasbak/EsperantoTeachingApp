@@ -1,6 +1,7 @@
 package com.example.andras.esperantoapp;
 
-import android.util.Log;
+import com.example.andras.esperantoapp.PartData;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
