@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -56,9 +56,7 @@ public class App extends Application {
       protected Object doInBackground(Object... params) {
 
         hentLessonsNetværk();
-        for(int i = 0; i < JsonDownload.getInstance().pictureSound.size(); i++) {
-          JsonDownload.getInstance().downloadPictureSound();
-        }
+        hentPictureandSound();
         return null;
       }
       @Override
@@ -67,41 +65,6 @@ public class App extends Application {
 
       }
     }.execute();
-
-/*
-    new AsyncTask() {
-
-      public ArrayList<PartData> res;
-
-      @Override
-      protected Object doInBackground(Object... params) {
-
-        for(int i=0; i < lessonUrl.length; i++) {
-
-          res = JsonDownload.getInstance().downloadJson(lessonUrl[i]);
-
-        }
-        return null;
-      }
-      @Override
-      protected void onPostExecute(Object o){
-
-        new AsyncTask(){
-
-          protected  Object doInBackground(Object... params){
-
-            for(int i = 0; i < JsonDownload.getInstance().pictureSound.size(); i++) {
-
-              JsonDownload.getInstance().downloadPictureSound();
-
-            }
-            return null;
-          }
-        }.execute();
-      }
-    }.execute();
-
- */
 
   }
 
@@ -121,7 +84,7 @@ public class App extends Application {
           Log.d("ESPERANTO", "Bruger fallback "+fallback+" med id "+id);
           lekData = JsonParser.inputStreamToString(getResources().openRawResource(id));
         }
-        Log.d("ESPERANTO", "lekdaya "+i+": "+lekData);
+        Log.d("ESPERANTO", "lekdata "+i+": "+lekData);
         lessions.add(new JSONObject(lekData));
       }
       lessons = lessions;
@@ -130,26 +93,47 @@ public class App extends Application {
     }
   }
 
-  private void hentLessonsNetværk() {
-    ArrayList<JSONObject> lessions = new ArrayList<JSONObject>();
-    try {
-      JSONArray lessonsjson = grundata.getJSONArray("lessons");
-      for (int i=0; i<lessonsjson.length(); i++) {
-        JSONObject l = lessonsjson.getJSONObject(i);
-        String url = l.getString("url");
-        File f = new File(FilCache.hentFil(url, false));
-        String lekData = JsonParser.inputStreamToString(new FileInputStream(f));
-        try {
-          lessions.add(new JSONObject(lekData));
-        } catch (Exception e) {
-          e.printStackTrace();
-          f.delete(); // Fejl i parsning - slet filen
-        }
+      private void hentLessonsNetværk() {
+            ArrayList<JSONObject> lessions = new ArrayList<JSONObject>();
+            try {
+                  JSONArray lessonsjson = grundata.getJSONArray("lessons");
+                  for (int i=0; i<lessonsjson.length(); i++) {
+                        JSONObject l = lessonsjson.getJSONObject(i);
+                        String url = l.getString("url");
+                        File f = new File(FilCache.hentFil(url, false));
+                        String lekData = JsonParser.inputStreamToString(new FileInputStream(f));
+                        try {
+                              lessions.add(new JSONObject(lekData));
+                        } catch (Exception e) {
+                              e.printStackTrace();
+                              f.delete(); // Fejl i parsning - slet filen
+                        }
+                  }
+                      lessons = lessions;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
       }
-      lessons = lessions;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
 
+    private void hentPictureandSound(){
+        ArrayList<String> pictureSound = new ArrayList<String>();
+
+        for (JSONObject l : App.lessons) {
+            pictureSound.add(l.optString("title"));
+            pictureSound.add(l.optString("sound"));
+        }
+
+        for(int i = 0; i < pictureSound.size(); i++){
+
+            String lokalHentetFil = null;
+            FileInputStream is;
+
+            try {
+                lokalHentetFil = FilCache.hentFil(pictureSound.get(i), true);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

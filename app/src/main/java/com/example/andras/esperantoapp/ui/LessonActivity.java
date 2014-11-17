@@ -53,14 +53,11 @@ public class LessonActivity extends FragmentActivity {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-
     synligTilSkærmbilledeNr = 1;
     lessonsPagerAdapter = new LessonPagerAdapter(getSupportFragmentManager());
 
     viewPager = (ViewPager) findViewById(R.id.pager);
     viewPager.setAdapter(lessonsPagerAdapter);
-    //  viewPager.setPageMargin(-250);
-
   }
 
 

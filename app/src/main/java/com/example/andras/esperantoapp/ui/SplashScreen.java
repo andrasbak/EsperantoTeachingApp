@@ -1,19 +1,15 @@
 package com.example.andras.esperantoapp.ui;
 
 
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Window;
 
-import com.example.andras.esperantoapp.JsonDownload;
 import com.example.andras.esperantoapp.R;
-import com.example.andras.esperantoapp.PartData;
 
 public class SplashScreen extends Activity {
 

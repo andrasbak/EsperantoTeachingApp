@@ -2,7 +2,7 @@
     "title": "Leciono unu",
     "parts": [
         {
-            "title": "Parto 1",
+            "title": "Parto unu",
             "questions": [
                 {
                     "type": "frazo",
@@ -57,25 +57,136 @@
                     "phrase": "Testudo estas malrapida besto.",
                     "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/testudo_estas_malrapida_besto.mp3",
                     "picture": "http://pixabay.com/static/uploads/photo/2014/03/04/09/46/turtle-279399_640.jpg"
-                }
-            ]
-        },
-        {
-            "title": "Parto 2",
-            "questions": [
+                },
                 {
                     "type": "bildodemando",
-                    "picture": "http://pixabay.com/static/uploads/photo/2013/11/26/19/47/mouse-218711_640.jpg",
+                    "picture": "http: //pixabay.com/static/uploads/photo/2013/11/26/19/47/mouse-218711_640.jpg",
                     "choise1": "Muso",
                     "choise2": "Elefanto",
                     "choise3": "Leopardo",
                     "correct": "Muso"
                 },
                 {
-                    "type": "frazo",
-                    "phrase": "Elefanto estas besto.",
-                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/elefanto_estas_besto.mp3",
-                    "picture": "http://pixabay.com/static/uploads/photo/2013/02/24/14/27/elephant-85656_640.jpg"
+                    "type": "bildodemando",
+                    "picture": "http://pixabay.com/static/uploads/photo/2014/03/04/09/46/turtle-279399_640.jpg",
+                    "choise1": "Leono",
+                    "choise2": "Testudo",
+                    "choise3": "Leopardo",
+                    "correct": "Testudo"
+                },
+                {
+                    "type": "bildodemando",
+                    "picture": "http: //pixabay.com/static/uploads/photo/2013/11/26/20/21/lion-218918_640.jpg",
+                    "choise1": "Leono",
+                    "choise2": "Testudo",
+                    "choise3": "Elefanto",
+                    "correct": "Leono"
+                },
+                {
+                    "type": "bildodemando",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/02/24/14/27/elephant-85656_640.jpg",
+                    "choise1": "Muso",
+                    "choise2": "Leono",
+                    "choise3": "Elefanto",
+                    "correct": "Elefanto"
+                },
+                {
+                    "type": "bildodemando",
+                    "picture": "http: //pixabay.com/static/uploads/photo/2013/03/27/22/26/leopard-97268_640.jpg",
+                    "choise1": "Testudo",
+                    "choise2": "Leopardo",
+                    "choise3": "Leono",
+                    "correct": "Leopardo"
+                },
+                {
+                    "type": "demando",
+                    "phrase": "Cxuelefantoestasgrandabesto?",
+                    "choise1": "Jes",
+                    "choise2": "Ne",
+                    "correct": "Jes",
+                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_elefanto_estas_granda_besto.mp3"
+                },
+                {
+                    "type": "demando",
+                    "phrase": "Cxumusoestasgrandabesto?",
+                    "choise1": "Jes",
+                    "choise2": "Ne",
+                    "correct": "Ne",
+                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_granda_besto.mp3"
+                },
+                {
+                    "type": "demando",
+                    "phrase": "Cxumusoestasmalgrandabesto?",
+                    "choise1": "Jes",
+                    "choise2": "Ne",
+                    "correct": "Jes",
+                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_malgranda_besto.mp3"
+                },
+                {
+                    "type": "demando",
+                    "phrase": "Cxuleopardoestasmalrapidabesto?",
+                    "choise1": "Jes",
+                    "choise2": "Ne",
+                    "correct": "Ne",
+                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_leopardo_estas_malrapida_besto.mp3"
+                },
+                {
+                    "type": "demando",
+                    "phrase": "Cxutestudoestasrapidabesto?",
+                    "choise1": "Jes",
+                    "choise2": "Ne",
+                    "correct": "Ne",
+                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_testudo_estas_rapida_besto.mp3"
+                },
+                {
+                    "type": "vortludoj",
+                    "phrase": "Leopardoest",
+                    "word1": "-as",
+                    "word2": "-o",
+                    "word3": "best-",
+                    "word4": "",
+                    "word5": "",
+                    "word6": ""
+                },
+                {
+                    "type": "vortludoj",
+                    "phrase": "Musoest",
+                    "word1": "-a",
+                    "word2": "mal-",
+                    "word3": "-o",
+                    "word4": "best-",
+                    "word5": "-as",
+                    "word6": "grand-"
+                },
+                {
+                    "type": "vortludoj",
+                    "phrase": "Testudoest",
+                    "word1": "-a",
+                    "word2": "-o",
+                    "word3": "best",
+                    "word4": "-as",
+                    "word5": "mal-",
+                    "word6": "rapid-"
+                },
+                {
+                    "type": "vortludoj",
+                    "phrase": "Leopardoest",
+                    "word1": "-a",
+                    "word2": "-o",
+                    "word3": "best",
+                    "word4": "-as",
+                    "word5": "mal-",
+                    "word6": "rapid-"
+                },
+                {
+                    "type": "vortludoj",
+                    "phrase": "Elefantoneest",
+                    "word1": "-a",
+                    "word2": "-o",
+                    "word3": "best",
+                    "word4": "-as",
+                    "word5": "mal-",
+                    "word6": "rapid-"
                 }
             ]
         }
