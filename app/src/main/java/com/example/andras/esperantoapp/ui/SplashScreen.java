@@ -14,7 +14,7 @@ import com.example.andras.esperantoapp.R;
 public class SplashScreen extends Activity {
 
     // Set Duration of the Splash Screen
-    long Delay = 5000;
+    long Delay = 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -23,8 +23,15 @@ public class LessonActivity extends FragmentActivity {
 
   ViewPager viewPager;
   LessonPagerAdapter lessonsPagerAdapter;
+  int partNr = 0;
 
   ArrayList<JSONObject> skærme = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> bildodemando = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> getBildodemando = new ArrayList<JSONObject>();
+    ArrayList<JSONObject> vortludoj = new ArrayList<JSONObject>();
+
+
   private int synligTilSkærmbilledeNr;
   private JSONObject lessonJson;
   private String lessionTitle;
@@ -40,16 +47,29 @@ public class LessonActivity extends FragmentActivity {
     lessonJson = App.lessons.get(lessonNr);
     lessionTitle = lessonJson.optString("title");
     setTitle(lessionTitle);
-
+//partsarray - objekt - titel,lesson - array - objet - titel,
     JSONArray parts = null;
     try {
+
       parts = lessonJson.getJSONArray("parts");
       String titel = lessonJson.getString("title");
-      skærme.add(new JSONObject().put("title", lessionTitle + " " + titel));
-      for (int partsNr = 0; partsNr < parts.length(); partsNr++) {
+      for(int i = 0; i < parts.length(); i++) {
+          JSONObject part = parts.getJSONObject(i);
+          JSONArray questions = part.getJSONArray("questions");
+
+          for (int j = 0; j < questions.length(); j++) {
+              småobj.add(questions.getJSONObject(j));
+              //System.out.println("SMÅ OBJEKTER: " + småobj.size());
+          }
+      }
+
+        skærme.add(new JSONObject().put("title", titel));
+        for (int partsNr = 0; partsNr < parts.length(); partsNr++) {
         JSONObject part = parts.getJSONObject(partsNr);
         skærme.add(part);
       }
+
+
     } catch (JSONException e) {
       e.printStackTrace();
     }
@@ -75,8 +95,10 @@ public class LessonActivity extends FragmentActivity {
     @Override
     public Fragment getItem(int i) {
       Fragment f;
-      JSONObject json = skærme.get(i);
+      JSONObject json = småobj.get(i);
+      System.out.println(json);
       String type = json.optString("type", "mellemskærm");
+      System.out.println("type: " + type + "------------------------------------------");
       if ("bildodemando".equals(type)) f = new ScreenTypeBildoDemando();
       else if ("demando".equals(type)) f = new ScreenTypeDemando();
       else if ("frazo".equals(type)) f = new ScreenTypeFrazo();
@@ -86,5 +108,6 @@ public class LessonActivity extends FragmentActivity {
       f.setArguments(args);
       return f;
     }
+
   }
 }

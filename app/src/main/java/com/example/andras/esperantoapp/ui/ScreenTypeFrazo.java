@@ -1,11 +1,10 @@
 package com.example.andras.esperantoapp.ui;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.media.MediaPlayer;
 
+import com.example.andras.esperantoapp.FilCache;
 import com.example.andras.esperantoapp.R;
-import com.example.andras.esperantoapp.skrald.LessonData;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
@@ -26,6 +30,7 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     ImageButton imageButton;
     TextView textView, titleView;
     MediaPlayer mp = new MediaPlayer();
+    ArrayList<JSONObject> questionObj = new ArrayList<JSONObject>();
 
   private JSONObject jsondata;
 
@@ -33,20 +38,31 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View lessonpart1 = inflater.inflate(R.layout.fragment_lesson_part1, container, false);
+        View lessonpart1 = inflater.inflate(R.layout.fragment_type_frazo, container, false);
         imageView = (ImageView)lessonpart1.findViewById(R.id.imageViewPart1);
         imageButton = (ImageButton)lessonpart1.findViewById(R.id.imageButtonPart1);
         imageButton.setOnClickListener(this);
         textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
         titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
+      System.out.println("HEJ!!!!!!!!");
+      try {
 
-    try {
-      jsondata = new JSONObject(getArguments().getString("jsondata"));
-      textView.setText(jsondata.optString("phrase"));
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
+          jsondata = new JSONObject(getArguments().getString("jsondata"));
 
+          System.out.println("--------------------------------------"+jsondata.optString("phrase")+"-------------------------------------------------------------");
+          textView.setText(jsondata.optString("phrase"));
+          System.out.println("ESPERANTO: " + jsondata.optString("picture"));
+          imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
+          mp.setDataSource(FilCache.findLokaltFilnavn(jsondata.optString("sound")));
+
+      } catch (JSONException e) {
+          e.printStackTrace();
+          System.out.println("hej");
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+
+      setInformation();
 
         return lessonpart1;
     }
@@ -55,50 +71,16 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         if(v.equals(imageButton)){
 
             mp.start();
-            while(mp.isPlaying()){}
-            dialog();
+
 
         }
     }
 
-    public void dialog(){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        dialog.setTitle("Correct!");
-        dialog.setPositiveButton("Continue", new AlertDialog.OnClickListener() {
+    public void setInformation(){
 
-            public void onClick(DialogInterface arg0, int arg1) {
 
-            }
-        });
-        dialog.show();
+
     }
 
 
-/*
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
-        ImageView bmImage;
-        InputStream is = null;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            Bitmap mIcon11 = null;
-            try {
-                String lokalHentetFil = FilCache.hentFil(LessonData.getInstance().getPictureUrl(), true);
-                is = new FileInputStream(lokalHentetFil);
-                mIcon11 = BitmapFactory.decodeStream(is);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-
-    } */
 }

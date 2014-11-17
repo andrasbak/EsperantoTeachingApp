@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.esperantoapp.ui.ScreenTypeBildoDemando"
+    tools:context="com.example.andras.esperantoapp.ui.ScreenTypeDemando"
     android:weightSum="1"
     android:orientation="vertical"
     android:background="#ffffffff"
@@ -26,13 +26,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/titlePart1"
+                android:id="@+id/titlePart3"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentLeft="true"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:gravity="center" />
 
         </LinearLayout>
 
@@ -48,12 +49,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.20"></View>
 
-            <ImageView
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:id="@+id/imageViewPart1"
-                android:src="@drawable/eks_elephant_85656_640"
-                android:layout_weight="0.60" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textViewPart3"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.60"
+                android:gravity="center"/>
 
             <View
                 android:layout_width="0dp"
@@ -84,15 +87,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"></View>
 
-            <TextView
+            <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/phrasePart1"
+                android:id="@+id/imageButtonPart3"
                 android:layout_weight="0.50"
-                android:gravity="center"
-                android:text="Eksempel: Elefanto estas besto. "
-                android:textColor="#ff000000" />
+                android:background="#ffffffff"
+                android:src="@drawable/listen" />
 
             <View
                 android:layout_width="0dp"
@@ -105,7 +106,7 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.50"
+            android:layout_weight="0.25"
             android:weightSum="1" >
 
             <View
@@ -113,13 +114,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"></View>
 
-            <ImageButton
+            <Button
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:id="@+id/imageButtonPart1"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_gravity="center"
                 android:layout_weight="0.50"
-                android:background="#ffffffff"
-                android:src="@drawable/listen" />
+                android:id="@+id/buttonPart3_1"
+                android:background="#ff4bea3c"
+                android:textColor="#ffffffff"
+                android:textSize="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Jes" />
 
             <View
                 android:layout_width="0dp"
@@ -127,6 +133,42 @@
                 android:layout_weight="0.25"></View>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:weightSum="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:layout_weight="0.50"
+                android:id="@+id/buttonPart3_2"
+                android:background="#ffff6f6f"
+                android:textColor="#ffffffff"
+                android:textSize="22dp"
+                android:layout_marginTop="10dp"
+                android:text="Ne" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+        </LinearLayout>
+
+
+
+
 
     </LinearLayout>
 

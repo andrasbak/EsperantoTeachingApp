@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class App extends Application {
 
 
-  private String[] lessonUrl = {"http://pastebin.com/raw.php?i=rSXM8DY3"};
   public static SharedPreferences prefs;
   public static JSONObject grundata;
   public static ArrayList<JSONObject> lessons;
@@ -56,7 +55,7 @@ public class App extends Application {
       protected Object doInBackground(Object... params) {
 
         hentLessonsNetværk();
-        hentPictureandSound();
+        //hentPictureandSound();
         return null;
       }
       @Override
@@ -110,6 +109,7 @@ public class App extends Application {
                         }
                   }
                       lessons = lessions;
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -122,8 +122,9 @@ public class App extends Application {
             pictureSound.add(l.optString("title"));
             pictureSound.add(l.optString("sound"));
         }
-
+        Log.d("ESPERANTO", "Picture and Sound 1");
         for(int i = 0; i < pictureSound.size(); i++){
+            Log.d("ESPERANTO", "Picture and Sound 2");
 
             String lokalHentetFil = null;
             FileInputStream is;
