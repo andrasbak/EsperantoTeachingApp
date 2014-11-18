@@ -105,7 +105,7 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.50"
+            android:layout_weight="0.40"
             android:weightSum="1" >
 
             <View
@@ -125,6 +125,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.35"
+            android:weightSum="1" >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"></View>
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/continueButton1"
+                android:layout_weight="0.50"
+                android:layout_gravity="center"
+                android:src="@drawable/lesson_continue_selector"
+                android:background="#ffffffff" />
+
 
         </LinearLayout>
 

@@ -21,15 +21,16 @@ import org.json.JSONObject;
 public class LessonFrag extends Fragment implements View.OnClickListener {
 
     TextView textView;
-    ImageButton imageButton;
+    Button beginButton;
   private JSONObject lessonJson;
 
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
         View lessonOne = inflater.inflate(R.layout.fragment_lesson, container, false);
-        imageButton = (ImageButton)lessonOne.findViewById(R.id.beginButton);
-        imageButton.setOnClickListener(this);
+        beginButton = (Button)lessonOne.findViewById(R.id.beginButton);
+        beginButton.setFocusable(true);
+        beginButton.setOnClickListener(this);
 
       textView = (TextView)lessonOne.findViewById(R.id.lessonTitle);
 
@@ -46,7 +47,7 @@ public class LessonFrag extends Fragment implements View.OnClickListener {
 
     public void onClick(View v){
 
-        if(v == imageButton){
+        if(v == beginButton){
           // .putExtras(getArguments() overfører alle data fra fragmentets argument til intentet
           startActivity(new Intent(getActivity(), LessonActivity.class).putExtras(getArguments()));
 

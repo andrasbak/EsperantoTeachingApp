@@ -23,14 +23,8 @@ public class LessonActivity extends FragmentActivity {
 
   ViewPager viewPager;
   LessonPagerAdapter lessonsPagerAdapter;
-  int partNr = 0;
 
-  ArrayList<JSONObject> skærme = new ArrayList<JSONObject>();
     ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
-    ArrayList<JSONObject> bildodemando = new ArrayList<JSONObject>();
-    ArrayList<JSONObject> getBildodemando = new ArrayList<JSONObject>();
-    ArrayList<JSONObject> vortludoj = new ArrayList<JSONObject>();
-
 
   private int synligTilSkærmbilledeNr;
   private JSONObject lessonJson;
@@ -63,13 +57,6 @@ public class LessonActivity extends FragmentActivity {
           }
       }
 
-        skærme.add(new JSONObject().put("title", titel));
-        for (int partsNr = 0; partsNr < parts.length(); partsNr++) {
-        JSONObject part = parts.getJSONObject(partsNr);
-        skærme.add(part);
-      }
-
-
     } catch (JSONException e) {
       e.printStackTrace();
     }
@@ -97,8 +84,9 @@ public class LessonActivity extends FragmentActivity {
       Fragment f;
       JSONObject json = småobj.get(i);
       System.out.println(json);
+        System.out.println("LESSONS: " + App.lessons +"---------------------------------------------------------------");
       String type = json.optString("type", "mellemskærm");
-      System.out.println("type: " + type + "------------------------------------------");
+      System.out.println("type: " + type);
       if ("bildodemando".equals(type)) f = new ScreenTypeBildoDemando();
       else if ("demando".equals(type)) f = new ScreenTypeDemando();
       else if ("frazo".equals(type)) f = new ScreenTypeFrazo();

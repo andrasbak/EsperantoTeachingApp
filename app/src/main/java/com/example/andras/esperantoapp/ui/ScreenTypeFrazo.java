@@ -21,16 +21,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
     ImageView imageView;
-    ImageButton imageButton;
+    ImageButton imageButton, continueButton;
     TextView textView, titleView;
     MediaPlayer mp = new MediaPlayer();
-    ArrayList<JSONObject> questionObj = new ArrayList<JSONObject>();
+
 
   private JSONObject jsondata;
 
@@ -42,18 +43,21 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         imageView = (ImageView)lessonpart1.findViewById(R.id.imageViewPart1);
         imageButton = (ImageButton)lessonpart1.findViewById(R.id.imageButtonPart1);
         imageButton.setOnClickListener(this);
+        continueButton = (ImageButton)lessonpart1.findViewById(R.id.continueButton1);
+        continueButton.setFocusable(true);
+        continueButton.setOnClickListener(this);
+        continueButton.setVisibility(View.INVISIBLE);
         textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
         titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
-      System.out.println("HEJ!!!!!!!!");
       try {
 
           jsondata = new JSONObject(getArguments().getString("jsondata"));
-
-          System.out.println("--------------------------------------"+jsondata.optString("phrase")+"-------------------------------------------------------------");
           textView.setText(jsondata.optString("phrase"));
-          System.out.println("ESPERANTO: " + jsondata.optString("picture"));
           imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
-          mp.setDataSource(FilCache.findLokaltFilnavn(jsondata.optString("sound")));
+          mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
+          mp.prepare();
+
+
 
       } catch (JSONException e) {
           e.printStackTrace();
@@ -71,9 +75,15 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         if(v.equals(imageButton)){
 
             mp.start();
+            continueButton.setVisibility(View.VISIBLE);
+
+        }
+        else if(v.equals(continueButton)){
+
 
 
         }
+
     }
 
     public void setInformation(){

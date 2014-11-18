@@ -5,7 +5,8 @@
     tools:context="com.example.andras.esperantoapp.ui.LessonFrag"
     android:background="#ffffffff"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="true">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -86,25 +87,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:layout_weight="0.8"
         android:weightSum="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="242dp">
-
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/beginButton"
-                android:src="@drawable/lessonbegin"
-                android:background="#ffffffff"/>
-
-        </LinearLayout>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lesson_begin_selector"
+            android:layout_gravity="center"
+            android:id="@+id/beginButton" />
 
     </LinearLayout>
+
 
     </LinearLayout>
 

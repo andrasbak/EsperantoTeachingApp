@@ -55,8 +55,12 @@ public class App extends Application {
       protected Object doInBackground(Object... params) {
 
         hentLessonsNetværk();
-        //hentPictureandSound();
-        return null;
+          try {
+              hentPictureandSound();
+          } catch (JSONException e) {
+              e.printStackTrace();
+          }
+          return null;
       }
       @Override
       protected void onPostExecute(Object o){
@@ -115,16 +119,28 @@ public class App extends Application {
             }
       }
 
-    private void hentPictureandSound(){
+    private void hentPictureandSound() throws JSONException {
         ArrayList<String> pictureSound = new ArrayList<String>();
+        JSONObject lesson = null;
 
-        for (JSONObject l : App.lessons) {
-            pictureSound.add(l.optString("title"));
-            pictureSound.add(l.optString("sound"));
+        for (int i =0;i< lessons.size();i++) {
+             lesson = lessons.get(i);
+            System.out.println("LESSON LESSON: "+lessons.get(i));
+            JSONArray parts = lesson.getJSONArray("parts");
+            System.out.println("PARTS PARTS: " + parts);
+            for (int j=0; j<parts.length(); j++) {
+
+                JSONObject partquestions = parts.getJSONObject(j);
+                JSONArray question = partquestions.getJSONArray("questions");
+
+                for (int h = 0; h < parts.length(); h++) {
+                    JSONObject spørgsmål = question.getJSONObject(j);
+                    pictureSound.add(spørgsmål.optString("picture"));
+                    pictureSound.add(spørgsmål.optString("sound"));
+                }
+            }
         }
-        Log.d("ESPERANTO", "Picture and Sound 1");
         for(int i = 0; i < pictureSound.size(); i++){
-            Log.d("ESPERANTO", "Picture and Sound 2");
 
             String lokalHentetFil = null;
             FileInputStream is;

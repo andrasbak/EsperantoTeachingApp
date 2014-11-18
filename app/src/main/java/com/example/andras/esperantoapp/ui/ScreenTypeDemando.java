@@ -1,6 +1,8 @@
 package com.example.andras.esperantoapp.ui;
 
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,8 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.andras.esperantoapp.FilCache;
 import com.example.andras.esperantoapp.R;
 import com.example.andras.esperantoapp.skrald.LessonData;
+
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
 
 
 public class ScreenTypeDemando extends Fragment implements View.OnClickListener {
@@ -19,6 +27,11 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
 
     TextView textView, titleView;
     Button button1, button2;
+
+    JSONObject jsondata = null;
+    String correct = "";
+
+    MediaPlayer mp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +46,20 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         textView = (TextView)lessonPart3.findViewById(R.id.textViewPart3);
         titleView = (TextView)lessonPart3.findViewById(R.id.titlePart3);
 
+        try{
+            jsondata = new JSONObject(getArguments().getString("jsondata"));
+            button1.setText(jsondata.optString("choise1"));
+            button2.setText(jsondata.optString("choise2"));
+            correct = jsondata.optString("correct");
+
+            mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
+            mp.prepare();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         return lessonPart3;
 
     }
@@ -40,14 +67,14 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
     public void onClick(View v){
 
         if(v.equals(button1)){
-            if(button1.getText().equals(LessonData.getInstance().getCorrect())){
+            if(button1.getText().equals(correct)){
 
             }
             else{
                 Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();}
         }
         else if(v.equals(button2)){
-            if(button2.getText().equals(LessonData.getInstance().getCorrect())){
+            if(button2.getText().equals(correct)){
 
             }
             else{
