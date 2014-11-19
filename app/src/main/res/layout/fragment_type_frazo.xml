@@ -119,7 +119,7 @@
                 android:id="@+id/imageButtonPart1"
                 android:layout_weight="0.50"
                 android:background="#ffffffff"
-                android:src="@drawable/listen" />
+                android:src="@drawable/listen_selector"/>
 
             <View
                 android:layout_width="0dp"
