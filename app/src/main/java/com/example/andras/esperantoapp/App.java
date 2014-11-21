@@ -55,11 +55,13 @@ public class App extends Application {
       protected Object doInBackground(Object... params) {
 
         hentLessonsNetværk();
-          try {
+
+      try {
               hentPictureandSound();
           } catch (JSONException e) {
               e.printStackTrace();
           }
+
           return null;
       }
       @Override
@@ -128,20 +130,24 @@ public class App extends Application {
             System.out.println("LESSON LESSON: "+lessons.get(i));
             JSONArray parts = lesson.getJSONArray("parts");
             System.out.println("PARTS PARTS: " + parts);
+
             for (int j=0; j<parts.length(); j++) {
 
                 JSONObject partquestions = parts.getJSONObject(j);
                 JSONArray question = partquestions.getJSONArray("questions");
 
-                for (int h = 0; h < parts.length(); h++) {
-                    JSONObject spørgsmål = question.getJSONObject(j);
+                for (int h = 0; h < question.length(); h++) {
+                    JSONObject spørgsmål = question.getJSONObject(h);
                     pictureSound.add(spørgsmål.optString("picture"));
                     pictureSound.add(spørgsmål.optString("sound"));
+
+
+
                 }
             }
         }
+        System.out.println("PICTURESOUND: " + pictureSound);
         for(int i = 0; i < pictureSound.size(); i++){
-
             String lokalHentetFil = null;
             FileInputStream is;
 

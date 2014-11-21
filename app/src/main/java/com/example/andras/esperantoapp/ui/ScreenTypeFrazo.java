@@ -4,7 +4,6 @@ package com.example.andras.esperantoapp.ui;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,17 @@ import android.media.MediaPlayer;
 import com.example.andras.esperantoapp.FilCache;
 import com.example.andras.esperantoapp.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
     ImageView imageView;
-    ImageButton imageButton, continueButton;
+    ImageButton imageButton, continueButton1;
     TextView textView, titleView;
     MediaPlayer mp = new MediaPlayer();
 
@@ -39,16 +36,15 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View lessonpart1 = inflater.inflate(R.layout.fragment_type_frazo, container, false);
-        imageView = (ImageView)lessonpart1.findViewById(R.id.imageViewPart1);
-        imageButton = (ImageButton)lessonpart1.findViewById(R.id.imageButtonPart1);
+        View viewFrazo = inflater.inflate(R.layout.fragment_type_frazo, container, false);
+        imageView = (ImageView)viewFrazo.findViewById(R.id.imageViewPart1);
+        imageButton = (ImageButton)viewFrazo.findViewById(R.id.imageButtonPart1);
         imageButton.setOnClickListener(this);
-        continueButton = (ImageButton)lessonpart1.findViewById(R.id.continueButton1);
-        continueButton.setFocusable(true);
-        continueButton.setOnClickListener(this);
-        continueButton.setVisibility(View.INVISIBLE);
-        textView = (TextView)lessonpart1.findViewById(R.id.phrasePart1);
-        titleView = (TextView)lessonpart1.findViewById(R.id.titlePart1);
+        continueButton1 = (ImageButton)viewFrazo.findViewById(R.id.continueButton1);
+        continueButton1.setOnClickListener(this);
+        continueButton1.setVisibility(View.INVISIBLE);
+        textView = (TextView)viewFrazo.findViewById(R.id.phrasePart1);
+        titleView = (TextView)viewFrazo.findViewById(R.id.titlePart1);
       try {
 
           jsondata = new JSONObject(getArguments().getString("jsondata"));
@@ -57,8 +53,6 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
           mp.reset();
           mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
           mp.prepare();
-
-
 
       } catch (JSONException e) {
           e.printStackTrace();
@@ -69,22 +63,21 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
       setInformation();
 
-        return lessonpart1;
+        return viewFrazo;
     }
     public void onClick(View v){
 
         if(v.equals(imageButton)){
 
             mp.start();
-            continueButton.setVisibility(View.VISIBLE);
+            continueButton1.setVisibility(View.VISIBLE);
 
         }
-        else if(v.equals(continueButton)){
+        else if(v.equals(continueButton1)){
 
-
+            ((LessonActivity) getActivity()).addFragment();
 
         }
-
     }
 
     public void setInformation(){
@@ -92,6 +85,4 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
 
 
     }
-
-
 }

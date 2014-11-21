@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.andras.esperantoapp.App;
@@ -60,11 +61,17 @@ public class LessonActivity extends FragmentActivity {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    synligTilSkærmbilledeNr = 1;
+    synligTilSkærmbilledeNr = 0;
     lessonsPagerAdapter = new LessonPagerAdapter(getSupportFragmentManager());
+    addFragment();
 
     viewPager = (ViewPager) findViewById(R.id.pager);
     viewPager.setAdapter(lessonsPagerAdapter);
+  }
+
+  public void addFragment(){
+      synligTilSkærmbilledeNr = synligTilSkærmbilledeNr +1;
+      lessonsPagerAdapter.notifyDataSetChanged();
   }
 
 
@@ -95,6 +102,7 @@ public class LessonActivity extends FragmentActivity {
       args.putString("jsondata", json.toString());
       f.setArguments(args);
       return f;
+
     }
 
   }

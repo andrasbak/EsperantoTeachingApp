@@ -8,13 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.andras.esperantoapp.FilCache;
 import com.example.andras.esperantoapp.R;
-import com.example.andras.esperantoapp.skrald.LessonData;
 
 import org.json.JSONObject;
 
@@ -27,6 +27,7 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
     ImageView imageView;
     TextView titleView;
     Button button1, button2, button3;
+    ImageButton continueButton2;
     String correct = "";
 
     private JSONObject jsondata;
@@ -35,16 +36,19 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View lessonPart2 = inflater.inflate(R.layout.fragment_type_bildodemando, container, false);
+        View viewBildoDemando = inflater.inflate(R.layout.fragment_type_bildodemando, container, false);
 
-        button1 = (Button)lessonPart2.findViewById(R.id.buttonPart2_1);
+        button1 = (Button)viewBildoDemando.findViewById(R.id.buttonPart2_1);
         button1.setOnClickListener(this);
-        button2 = (Button)lessonPart2.findViewById(R.id.buttonPart2_2);
+        button2 = (Button)viewBildoDemando.findViewById(R.id.buttonPart2_2);
         button2.setOnClickListener(this);
-        button3 = (Button)lessonPart2.findViewById(R.id.buttonPart2_3);
+        button3 = (Button)viewBildoDemando.findViewById(R.id.buttonPart2_3);
         button3.setOnClickListener(this);
-        imageView = (ImageView)lessonPart2.findViewById(R.id.imageViewPart2);
-        titleView = (TextView)lessonPart2.findViewById(R.id.titlePart2);
+        imageView = (ImageView)viewBildoDemando.findViewById(R.id.imageViewPart2);
+        titleView = (TextView)viewBildoDemando.findViewById(R.id.titlePart2);
+        continueButton2 = (ImageButton)viewBildoDemando.findViewById(R.id.continueButton2);
+        continueButton2.setOnClickListener(this);
+        continueButton2.setVisibility(View.INVISIBLE);
 
         try{
             jsondata = new JSONObject(getArguments().getString("jsondata"));
@@ -58,7 +62,13 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
             e.printStackTrace();
         }
 
-        return lessonPart2;
+        return viewBildoDemando;
+    }
+
+    private void toast(){
+
+        Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_SHORT).show();
+
     }
 
     public void onClick(View v) {
@@ -66,19 +76,27 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         if (v.equals(button1)) {
 
             if (button1.getText().equals(correct)) {
+                continueButton2.setVisibility(View.VISIBLE);
             } else {
-                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
+                toast();
             }
         } else if (v.equals(button2)) {
             if (button2.getText().equals(correct)) {
+                continueButton2.setVisibility(View.VISIBLE);
             } else {
-                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
+                toast();
             }
         } else if (v.equals(button3)) {
             if (button3.getText().equals(correct)) {
+                continueButton2.setVisibility(View.VISIBLE);
             } else {
-                Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_LONG).show();
+                toast();
             }
+        }
+        else if(v.equals(continueButton2)){
+
+            ((LessonActivity) getActivity()).addFragment();
+
         }
     }
 }
