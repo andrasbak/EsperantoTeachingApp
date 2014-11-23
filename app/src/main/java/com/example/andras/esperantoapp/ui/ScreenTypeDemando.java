@@ -54,7 +54,7 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
             button2.setText(jsondata.optString("choise2"));
             textView.setText(jsondata.optString("phrase"));
             correct = jsondata.optString("correct");
-
+            System.out.println("SOUND: " + FilCache.findLokaltFilnavn(jsondata.optString("sound")));
             mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
             mp.prepare();
         }
