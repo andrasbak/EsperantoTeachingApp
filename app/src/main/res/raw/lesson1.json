@@ -66,7 +66,7 @@
             "questions": [
                 {
                     "type": "bildodemando",
-                    "picture": "http: //pixabay.com/static/uploads/photo/2013/11/26/19/47/mouse-218711_640.jpg",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/11/26/19/47/mouse-218711_640.jpg",
                     "choise1": "Muso",
                     "choise2": "Elefanto",
                     "choise3": "Leopardo",
@@ -82,7 +82,7 @@
                 },
                 {
                     "type": "bildodemando",
-                    "picture": "http: //pixabay.com/static/uploads/photo/2013/11/26/20/21/lion-218918_640.jpg",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/11/26/20/21/lion-218918_640.jpg",
                     "choise1": "Leono",
                     "choise2": "Testudo",
                     "choise3": "Elefanto",
@@ -98,7 +98,7 @@
                 },
                 {
                     "type": "bildodemando",
-                    "picture": "http: //pixabay.com/static/uploads/photo/2013/03/27/22/26/leopard-97268_640.jpg",
+                    "picture": "http://pixabay.com/static/uploads/photo/2013/03/27/22/26/leopard-97268_640.jpg",
                     "choise1": "Testudo",
                     "choise2": "Leopardo",
                     "choise3": "Leono",
@@ -115,7 +115,7 @@
                     "choise1": "Jes",
                     "choise2": "Ne",
                     "correct": "Jes",
-                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_elefanto_estas_granda_besto.mp3"
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/cxu_elefanto_estas_granda_besto.mp3"
                 },
                 {
                     "type": "demando",
@@ -123,7 +123,7 @@
                     "choise1": "Jes",
                     "choise2": "Ne",
                     "correct": "Ne",
-                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_granda_besto.mp3"
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_granda_besto.mp3"
                 },
                 {
                     "type": "demando",
@@ -131,7 +131,7 @@
                     "choise1": "Jes",
                     "choise2": "Ne",
                     "correct": "Jes",
-                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_malgranda_besto.mp3"
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/cxu_muso_estas_malgranda_besto.mp3"
                 },
                 {
                     "type": "demando",
@@ -139,7 +139,7 @@
                     "choise1": "Jes",
                     "choise2": "Ne",
                     "correct": "Ne",
-                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_leopardo_estas_malrapida_besto.mp3"
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/cxu_leopardo_estas_malrapida_besto.mp3"
                 },
                 {
                     "type": "demando",
@@ -147,7 +147,7 @@
                     "choise1": "Jes",
                     "choise2": "Ne",
                     "correct": "Ne",
-                    "sound": "http: //www.uploadhosting.co/uploads/2.108.211.83/cxu_testudo_estas_rapida_besto.mp3"
+                    "sound": "http://www.uploadhosting.co/uploads/2.108.211.83/cxu_testudo_estas_rapida_besto.mp3"
                 }
             ]
         },
