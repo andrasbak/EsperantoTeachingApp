@@ -1,4 +1,3 @@
-
 {
     "title": "Leciono unu",
     "parts": [
@@ -163,52 +162,51 @@
                     "word4": "",
                     "word5": "",
                     "word6": "",
-                    "answer": "Leopardo estas besto"
+                    "answer": "Leopardo est-as best-o"
                 },
                 {
                     "type": "vortludoj",
-                    "phrase": "Musoest",
+                    "phrase": "Muso est",
                     "word1": "-a",
                     "word2": "mal-",
                     "word3": "-o",
-                    "word4": "best-",
+                    "word4": "best",
                     "word5": "-as",
                     "word6": "grand",
-                    "answer": "Leopardo estas besto"
-
+                    "answer": "Leopardo est-as mal-granda best-o"
                 },
                 {
                     "type": "vortludoj",
-                    "phrase": "Testudoest",
+                    "phrase": "Testudo est",
                     "word1": "-a",
                     "word2": "-o",
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
                     "word6": "rapid",
-                    "answer": "Leopardo est-as best-o"
+                    "answer": "Tesotudo estas malrapida besto"
                 },
                 {
                     "type": "vortludoj",
-                    "phrase": "Leopardoest",
+                    "phrase": "Leopardo est",
                     "word1": "-a",
                     "word2": "-o",
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid-",
-                    "answer": "Leopardo estas besto"
+                    "word6": "rapid",
+                    "answer": "Leopardo estas rapida besto"
                 },
                 {
                     "type": "vortludoj",
-                    "phrase": "Elefantoneest",
+                    "phrase": "Elefanto ne est",
                     "word1": "-a",
                     "word2": "-o",
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid-",
-                    "answer": "Leopardo estas besto"
+                    "word6": "grand",
+                    "answer": "Elefanto ne estas malgranda besto"
                 }
             ]
         }

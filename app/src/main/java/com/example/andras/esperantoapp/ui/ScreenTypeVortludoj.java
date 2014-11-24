@@ -1,6 +1,7 @@
 package com.example.andras.esperantoapp.ui;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,13 +33,14 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
     private JSONObject jsondata;
     String answer;
     TextView droptext, pretext, word1, word2, word3, word4, word5, word6;
-    Button continueButton;
+    ImageButton continueButton;
+    SensorManager sensorManager;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View viewVortludoj = inflater.inflate(R.layout.fragment_type_demando, container, false);
+        View viewVortludoj = inflater.inflate(R.layout.fragment_type_vortludoj, container, false);
 
         droptext = (TextView) viewVortludoj.findViewById(R.id.textDrop);
         pretext = (TextView) viewVortludoj.findViewById(R.id.textPrewords);
@@ -57,9 +60,11 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         word6.setOnLongClickListener(longListener);
         droptext.setOnDragListener(dragListener);
 
-        continueButton = (Button)viewVortludoj.findViewById(R.id.continueButton4);
+        continueButton = (ImageButton)viewVortludoj.findViewById(R.id.continueButton4);
         continueButton.setOnClickListener(this);
         continueButton.setVisibility(View.INVISIBLE);
+
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
 
         try{
             jsondata = new JSONObject(getArguments().getString("jsondata"));
@@ -70,6 +75,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
             word4.setText(jsondata.optString("word4"));
             word5.setText(jsondata.optString("word5"));
             word6.setText(jsondata.optString("word6"));
+            pretext.setText(jsondata.optString("phrase"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -83,10 +89,9 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         int sensortype = e.sensor.getType();
         if (sensortype == Sensor.TYPE_ACCELEROMETER) {
             double sum = Math.abs(e.values[0]) + Math.abs(e.values[1]) + Math.abs(e.values[2]);
-            if (sum > 3 * SensorManager.GRAVITY_EARTH) {
+            if (sum > 5 * SensorManager.GRAVITY_EARTH) {
 
-                Toast.makeText(getActivity(), "Correct! You Passed!", Toast.LENGTH_SHORT).show();
-
+                droptext.setText("");
 
             }
         }
@@ -95,6 +100,19 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        int hyppighed = 250000; // 4 gange i sekundet
+
+        for (Sensor sensor : sensorManager.getSensorList(Sensor.TYPE_ALL)) {
+            System.out.println("sensor=" + sensor);
+            sensorManager.registerListener(this, sensor, hyppighed);
+        }
 
     }
 
@@ -148,9 +166,11 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
     public void checkSentence(){
 
-        System.out.println(answer);
+        System.out.println("HEJSA!!: " + answer);
         System.out.println(droptext.getText().toString());
+        System.out.println("GUESS: " + pretext.getText().toString() + droptext.getText().toString() + "------------------------------------------------------------------------------");
         if(answer.equals(pretext.getText().toString() + droptext.getText().toString())){
+
             continueButton.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "Correct! You Passed!", Toast.LENGTH_SHORT).show();
 
@@ -164,6 +184,29 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
 
+        }
+
+    }
+
+    public void textVisibility(){
+
+        if ((jsondata.optString("word1")).equals("")){
+            word1.setVisibility(View.INVISIBLE);
+        }
+        else if ((jsondata.optString("word2")).equals("")){
+            word2.setVisibility(View.INVISIBLE);
+        }
+        else if ((jsondata.optString("word3")).equals("")){
+            word3.setVisibility(View.INVISIBLE);
+        }
+        else if ((jsondata.optString("word4")).equals("")){
+            word4.setVisibility(View.INVISIBLE);
+        }
+        else if ((jsondata.optString("word5")).equals("")){
+            word5.setVisibility(View.INVISIBLE);
+        }
+        else if ((jsondata.optString("word6")).equals("")){
+            word6.setVisibility(View.INVISIBLE);
         }
 
     }

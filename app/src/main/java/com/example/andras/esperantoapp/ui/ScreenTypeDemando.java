@@ -17,6 +17,7 @@ import com.example.andras.esperantoapp.R;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 
@@ -25,12 +26,12 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
 
     TextView textView, titleView;
     Button button1, button2;
-    ImageButton continueButton3;
+    ImageButton continueButton3, soundButton;
 
     JSONObject jsondata = null;
     String correct = "";
 
-    MediaPlayer mp;
+    MediaPlayer mp = new MediaPlayer();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +48,8 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         continueButton3 = (ImageButton)viewDemando.findViewById(R.id.continueButton3);
         continueButton3.setOnClickListener(this);
         continueButton3.setVisibility(View.INVISIBLE);
+        soundButton = (ImageButton) viewDemando.findViewById(R.id.imageButtonPart3);
+        soundButton.setOnClickListener(this);
 
         try{
             jsondata = new JSONObject(getArguments().getString("jsondata"));
@@ -54,7 +57,7 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
             button2.setText(jsondata.optString("choise2"));
             textView.setText(jsondata.optString("phrase"));
             correct = jsondata.optString("correct");
-            System.out.println("SOUND: " + FilCache.findLokaltFilnavn(jsondata.optString("sound")));
+            System.out.println("SOUND: " + new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
             mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
             mp.prepare();
         }
@@ -89,6 +92,11 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         else if(v.equals(continueButton3)){
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
+        }
+        else if (v.equals(soundButton)){
+
+
+
         }
     }
 

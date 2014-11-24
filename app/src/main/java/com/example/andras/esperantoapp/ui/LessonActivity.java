@@ -26,7 +26,7 @@ public class LessonActivity extends FragmentActivity {
 
     ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
 
-  private int synligTilSkærmbilledeNr;
+  private static int synligTilSkærmbilledeNr = 24;
   private JSONObject lessonJson;
   private String lessionTitle;
 
@@ -34,7 +34,6 @@ public class LessonActivity extends FragmentActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     setContentView(R.layout.activity_main);
 
     int lessonNr = getIntent().getIntExtra("lesson", 0);
@@ -60,7 +59,7 @@ public class LessonActivity extends FragmentActivity {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    synligTilSkærmbilledeNr = 20;
+    //synligTilSkærmbilledeNr = 0;
     lessonsPagerAdapter = new LessonPagerAdapter(getSupportFragmentManager());
     addFragment();
 
@@ -91,20 +90,23 @@ public class LessonActivity extends FragmentActivity {
 
     @Override
     public Fragment getItem(int i) {
-      Fragment f;
-      JSONObject json = småobj.get(i);
-      System.out.println(json);
-        System.out.println("LESSONS: " + App.lessons +"---------------------------------------------------------------");
-      String type = json.optString("type", "mellemskærm");
-      System.out.println("type: " + type);
-      if ("bildodemando".equals(type)) f = new ScreenTypeBildoDemando();
-      else if ("demando".equals(type)) f = new ScreenTypeDemando();
-      else if ("frazo".equals(type)) f = new ScreenTypeFrazo();
-      else if ("vortludoj".equals(type)) f = new ScreenTypeVortludoj();
+      Fragment f=null;
+      if(i < småobj.size()){
+          JSONObject json = småobj.get(i);
+          System.out.println(json);
+            System.out.println("LESSONS: " + App.lessons +"---------------------------------------------------------------");
+          String type = json.optString("type", "mellemskærm");
+          System.out.println("type: " + type);
+          if ("bildodemando".equals(type)) f = new ScreenTypeBildoDemando();
+          else if ("demando".equals(type)) f = new ScreenTypeDemando();
+          else if ("frazo".equals(type)) f = new ScreenTypeFrazo();
+          else if ("vortludoj".equals(type)) f = new ScreenTypeVortludoj();
+          Bundle args = new Bundle();
+          args.putString("jsondata", json.toString());
+          f.setArguments(args);
+      }
+
       else f = new ScreenTypeFinished();
-      Bundle args = new Bundle();
-      args.putString("jsondata", json.toString());
-      f.setArguments(args);
       return f;
 
     }
