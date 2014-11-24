@@ -156,13 +156,14 @@
             "questions": [
                 {
                     "type": "vortludoj",
-                    "phrase": "Leopardoest",
+                    "phrase": "Leopardo est",
                     "word1": "-as",
                     "word2": "-o",
-                    "word3": "best-",
+                    "word3": "best",
                     "word4": "",
                     "word5": "",
-                    "word6": ""
+                    "word6": "",
+                    "answer": "Leopardo estas besto"
                 },
                 {
                     "type": "vortludoj",
@@ -172,7 +173,9 @@
                     "word3": "-o",
                     "word4": "best-",
                     "word5": "-as",
-                    "word6": "grand-"
+                    "word6": "grand",
+                    "answer": "Leopardo estas besto"
+
                 },
                 {
                     "type": "vortludoj",
@@ -182,7 +185,8 @@
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid-"
+                    "word6": "rapid",
+                    "answer": "Leopardo est-as best-o"
                 },
                 {
                     "type": "vortludoj",
@@ -192,7 +196,8 @@
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid-"
+                    "word6": "rapid-",
+                    "answer": "Leopardo estas besto"
                 },
                 {
                     "type": "vortludoj",
@@ -202,7 +207,8 @@
                     "word3": "best",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid-"
+                    "word6": "rapid-",
+                    "answer": "Leopardo estas besto"
                 }
             ]
         }

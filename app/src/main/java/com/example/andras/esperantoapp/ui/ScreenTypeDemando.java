@@ -88,6 +88,7 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         }
         else if(v.equals(continueButton3)){
             ((LessonActivity) getActivity()).addFragment();
+            ((LessonActivity) getActivity()).skiftBillede();
         }
     }
 

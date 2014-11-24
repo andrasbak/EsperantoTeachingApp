@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.example.andras.esperantoapp.App;
@@ -61,7 +60,7 @@ public class LessonActivity extends FragmentActivity {
     } catch (JSONException e) {
       e.printStackTrace();
     }
-    synligTilSkærmbilledeNr = 0;
+    synligTilSkærmbilledeNr = 20;
     lessonsPagerAdapter = new LessonPagerAdapter(getSupportFragmentManager());
     addFragment();
 
@@ -71,8 +70,12 @@ public class LessonActivity extends FragmentActivity {
 
   public void addFragment(){
       synligTilSkærmbilledeNr = synligTilSkærmbilledeNr +1;
-      lessonsPagerAdapter.notifyDataSetChanged();
   }
+
+    public void skiftBillede(){
+        lessonsPagerAdapter.notifyDataSetChanged();
+        viewPager.setCurrentItem(synligTilSkærmbilledeNr);
+    }
 
 
   private class LessonPagerAdapter extends FragmentPagerAdapter {
@@ -97,7 +100,8 @@ public class LessonActivity extends FragmentActivity {
       if ("bildodemando".equals(type)) f = new ScreenTypeBildoDemando();
       else if ("demando".equals(type)) f = new ScreenTypeDemando();
       else if ("frazo".equals(type)) f = new ScreenTypeFrazo();
-      else f = new ScreenTypeNyPart();
+      else if ("vortludoj".equals(type)) f = new ScreenTypeVortludoj();
+      else f = new ScreenTypeFinished();
       Bundle args = new Bundle();
       args.putString("jsondata", json.toString());
       f.setArguments(args);

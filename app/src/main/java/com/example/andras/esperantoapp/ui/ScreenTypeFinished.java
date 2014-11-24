@@ -16,7 +16,7 @@ import com.example.andras.esperantoapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ScreenTypeNyPart extends Fragment implements View.OnClickListener {
+public class ScreenTypeFinished extends Fragment implements View.OnClickListener {
 
   private JSONObject jsondata;
 

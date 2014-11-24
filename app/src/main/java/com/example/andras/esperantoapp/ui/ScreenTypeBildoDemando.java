@@ -96,6 +96,7 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         else if(v.equals(continueButton2)){
 
             ((LessonActivity) getActivity()).addFragment();
+            ((LessonActivity) getActivity()).skiftBillede();
 
         }
     }

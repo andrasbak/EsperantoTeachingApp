@@ -62,7 +62,6 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
           e.printStackTrace();
       }
 
-      setInformation();
 
         return viewFrazo;
     }
@@ -77,13 +76,9 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         else if(v.equals(continueButton1)){
 
             ((LessonActivity) getActivity()).addFragment();
+            ((LessonActivity) getActivity()).skiftBillede();
 
         }
     }
 
-    public void setInformation(){
-
-
-
-    }
 }
