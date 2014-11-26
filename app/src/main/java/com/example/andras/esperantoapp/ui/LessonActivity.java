@@ -26,7 +26,7 @@ public class LessonActivity extends FragmentActivity {
 
     ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
 
-  private static int synligTilSkærmbilledeNr = 24;
+  private static int synligTilSkærmbilledeNr = 0;
   private JSONObject lessonJson;
   private String lessionTitle;
 
@@ -59,6 +59,8 @@ public class LessonActivity extends FragmentActivity {
     } catch (JSONException e) {
       e.printStackTrace();
     }
+
+
     //synligTilSkærmbilledeNr = 0;
     lessonsPagerAdapter = new LessonPagerAdapter(getSupportFragmentManager());
     addFragment();
@@ -74,6 +76,11 @@ public class LessonActivity extends FragmentActivity {
     public void skiftBillede(){
         lessonsPagerAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(synligTilSkærmbilledeNr);
+    }
+    public void resetIndex(){
+
+        synligTilSkærmbilledeNr = 0;
+
     }
 
 

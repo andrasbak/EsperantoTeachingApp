@@ -39,6 +39,7 @@ public class ScreenTypeFinished extends Fragment implements View.OnClickListener
       if(v.equals(button)){
 
           ((LessonActivity) getActivity()).finish();
+          ((LessonActivity) getActivity()).resetIndex();
 
       }
 
