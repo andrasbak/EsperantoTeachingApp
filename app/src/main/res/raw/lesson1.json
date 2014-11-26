@@ -158,11 +158,11 @@
                     "phrase": "Leopardo est",
                     "word1": "-as",
                     "word2": "-o",
-                    "word3": "best",
+                    "word3": "best-",
                     "word4": "",
                     "word5": "",
                     "word6": "",
-                    "answer": "Leopardo est-as best-o"
+                    "answer": "Leopardo est-as best-o "
                 },
                 {
                     "type": "vortludoj",
@@ -170,43 +170,43 @@
                     "word1": "-a",
                     "word2": "mal-",
                     "word3": "-o",
-                    "word4": "best",
+                    "word4": "best-",
                     "word5": "-as",
-                    "word6": "grand",
-                    "answer": "Leopardo est-as mal-granda best-o"
+                    "word6": "grand-",
+                    "answer": "Leopardo est-as mal-grand-a best-o "
                 },
                 {
                     "type": "vortludoj",
                     "phrase": "Testudo est",
                     "word1": "-a",
                     "word2": "-o",
-                    "word3": "best",
+                    "word3": "best-",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid",
-                    "answer": "Tesotudo estas malrapida besto"
+                    "word6": "rapid-",
+                    "answer": "Testudo est-as mal-rapid-a best-o "
                 },
                 {
                     "type": "vortludoj",
                     "phrase": "Leopardo est",
                     "word1": "-a",
                     "word2": "-o",
-                    "word3": "best",
+                    "word3": "best-",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "rapid",
-                    "answer": "Leopardo estas rapida besto"
+                    "word6": "rapid-",
+                    "answer": "Leopardo est-as rapid-a best-o "
                 },
                 {
                     "type": "vortludoj",
                     "phrase": "Elefanto ne est",
                     "word1": "-a",
                     "word2": "-o",
-                    "word3": "best",
+                    "word3": "best-",
                     "word4": "-as",
                     "word5": "mal-",
-                    "word6": "grand",
-                    "answer": "Elefanto ne estas malgranda besto"
+                    "word6": "grand-",
+                    "answer": "Elefanto ne est-as mal-grand-a best-o "
                 }
             ]
         }

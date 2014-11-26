@@ -25,6 +25,9 @@ import android.widget.Toast;
 import com.example.andras.esperantoapp.R;
 
 import org.json.JSONObject;
+
+import java.sql.SQLOutput;
+
 /**
  * Created by Andras on 24-11-2014.
  */
@@ -80,6 +83,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         catch (Exception e){
             e.printStackTrace();
         }
+        textVisibility();
         return viewVortludoj;
     }
 
@@ -89,7 +93,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         int sensortype = e.sensor.getType();
         if (sensortype == Sensor.TYPE_ACCELEROMETER) {
             double sum = Math.abs(e.values[0]) + Math.abs(e.values[1]) + Math.abs(e.values[2]);
-            if (sum > 5 * SensorManager.GRAVITY_EARTH) {
+            if (sum > 4 * SensorManager.GRAVITY_EARTH) {
 
                 droptext.setText("");
 
@@ -147,17 +151,28 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
                     break;
                 case DragEvent.ACTION_DROP:
                     TextView draggedText = (TextView)event.getLocalState();
-                    String firstchar = draggedText.getText().toString().substring(0,1);
-                    if(firstchar.equals("-")){
-                        dropText.append(draggedText.getText());
-                        checkSentence();
-                    }
-                    else{
-                        dropText.append(" " + draggedText.getText());
+                    String firstchar = draggedText.getText().toString().substring(0, 1);
+                    Boolean lastchar = draggedText.getText().toString().endsWith("-");
+                    System.out.println(lastchar);
+                    String guess = pretext.getText().toString() + droptext.getText().toString();
+
+
+                    if(firstchar.equals("-") && guess.endsWith("-")){
+
+                        dropText.append(draggedText.getText().toString().substring(1, draggedText.length())+" ");
                         checkSentence();
                     }
 
+                    else if(firstchar.equals("-")){
+                        dropText.append(draggedText.getText().toString() + " ");
+                        checkSentence();
+                    }
 
+                    else if(lastchar.equals(true)){
+                        dropText.append(draggedText.getText().toString());
+                        checkSentence();
+                        System.out.println("GUESS 2: " + guess);
+                    }
                     break;
             }
             return true;
@@ -169,6 +184,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         System.out.println("HEJSA!!: " + answer);
         System.out.println(droptext.getText().toString());
         System.out.println("GUESS: " + pretext.getText().toString() + droptext.getText().toString() + "------------------------------------------------------------------------------");
+        System.out.println("GUESS: " + answer + "--------------------------------------------------------------");
         if(answer.equals(pretext.getText().toString() + droptext.getText().toString())){
 
             continueButton.setVisibility(View.VISIBLE);
@@ -193,19 +209,19 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         if ((jsondata.optString("word1")).equals("")){
             word1.setVisibility(View.INVISIBLE);
         }
-        else if ((jsondata.optString("word2")).equals("")){
+        if ((jsondata.optString("word2")).equals("")){
             word2.setVisibility(View.INVISIBLE);
         }
-        else if ((jsondata.optString("word3")).equals("")){
+        if ((jsondata.optString("word3")).equals("")){
             word3.setVisibility(View.INVISIBLE);
         }
-        else if ((jsondata.optString("word4")).equals("")){
+        if ((jsondata.optString("word4")).equals("")){
             word4.setVisibility(View.INVISIBLE);
         }
-        else if ((jsondata.optString("word5")).equals("")){
+        if ((jsondata.optString("word5")).equals("")){
             word5.setVisibility(View.INVISIBLE);
         }
-        else if ((jsondata.optString("word6")).equals("")){
+        if ((jsondata.optString("word6")).equals("")){
             word6.setVisibility(View.INVISIBLE);
         }
 
