@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 public class ScreenTypeFinished extends Fragment implements View.OnClickListener {
 
-  Button button;
+  ImageButton button;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +27,7 @@ public class ScreenTypeFinished extends Fragment implements View.OnClickListener
     // Inflate the layout for this fragment
     View viewFinished = inflater.inflate(R.layout.fragment_type_finished, container, false);
 
-      button = (Button)viewFinished.findViewById(R.id.buttonFinish);
+      button = (ImageButton)viewFinished.findViewById(R.id.buttonFinish);
       button.setOnClickListener(this);
 
 
