@@ -66,7 +66,7 @@ public class App extends Application {
       }
       @Override
       protected void onPostExecute(Object o){
-        Toast.makeText(getApplicationContext(),"Det nyeste er nu hentet", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"The newest data has been downlaoded", Toast.LENGTH_SHORT).show();
 
       }
     }.execute();
