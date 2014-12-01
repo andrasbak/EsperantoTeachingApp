@@ -26,7 +26,7 @@ public class LessonActivity extends FragmentActivity {
 
     ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
 
-  private static int synligTilSkærmbilledeNr = 0;
+  private static int synligTilSkærmbilledeNr = 14;
   private JSONObject lessonJson;
   private String lessionTitle;
 

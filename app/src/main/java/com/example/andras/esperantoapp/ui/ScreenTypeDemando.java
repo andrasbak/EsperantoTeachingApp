@@ -95,7 +95,7 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         }
         else if (v.equals(soundButton)){
 
-
+            mp.start();
 
         }
     }
