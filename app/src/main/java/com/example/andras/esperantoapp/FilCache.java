@@ -6,7 +6,6 @@ package com.example.andras.esperantoapp;
 
 import android.os.SystemClock;
 import android.util.Log;
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;

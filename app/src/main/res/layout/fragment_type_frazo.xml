@@ -94,11 +94,6 @@
                 android:text="Eksempel: Elefanto estas besto. "
                 android:textColor="#ff000000" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"></View>
-
         </LinearLayout>
 
         <LinearLayout
@@ -120,11 +115,6 @@
                 android:layout_weight="0.50"
                 android:background="#ffffffff"
                 android:src="@drawable/listen_selector"/>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"></View>
 
         </LinearLayout>
 
