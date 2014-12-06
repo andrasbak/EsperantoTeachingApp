@@ -1,14 +1,7 @@
 package com.example.andras.esperantoapp;
 
 import android.util.Log;
-
-
-import com.example.andras.esperantoapp.FilCache;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 

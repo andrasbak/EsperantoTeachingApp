@@ -1,26 +1,22 @@
 package com.example.andras.esperantoapp.ui;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-
 import com.example.andras.esperantoapp.App;
 import com.example.andras.esperantoapp.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class LessonActivity extends FragmentActivity {
   ViewPager viewPager;
   LessonPagerAdapter lessonsPagerAdapter;
-    ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
+  ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
   private static int synligTilSkærmbilledeNr = 0;
   private JSONObject lessonJson;
   private String lessionTitle;
@@ -54,7 +50,7 @@ public class LessonActivity extends FragmentActivity {
     viewPager = (ViewPager) findViewById(R.id.pager);
     viewPager.setAdapter(lessonsPagerAdapter);
   }
-  public void addFragment(){
+    public void addFragment(){
       synligTilSkærmbilledeNr = synligTilSkærmbilledeNr +1;
   }
     public void skiftBillede(){

@@ -140,9 +140,6 @@ public class App extends Application {
                     JSONObject spørgsmål = question.getJSONObject(h);
                     pictureSound.add(spørgsmål.optString("picture"));
                     pictureSound.add(spørgsmål.optString("sound"));
-
-
-
                 }
             }
         }

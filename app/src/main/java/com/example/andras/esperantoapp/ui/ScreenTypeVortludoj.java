@@ -31,7 +31,7 @@ import java.sql.SQLOutput;
 /**
  * Created by Andras on 24-11-2014.
  */
-public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener{
+public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener, View.OnLongClickListener, View.OnDragListener{
 
     private JSONObject jsondata;
     String answer;
@@ -55,13 +55,13 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         word5 = (TextView)viewVortludoj.findViewById(R.id.text5);
         word6 = (TextView)viewVortludoj.findViewById(R.id.text6);
 
-        word1.setOnLongClickListener(longListener);
-        word2.setOnLongClickListener(longListener);
-        word3.setOnLongClickListener(longListener);
-        word4.setOnLongClickListener(longListener);
-        word5.setOnLongClickListener(longListener);
-        word6.setOnLongClickListener(longListener);
-        droptext.setOnDragListener(dragListener);
+        word1.setOnLongClickListener(this);
+        word2.setOnLongClickListener(this);
+        word3.setOnLongClickListener(this);
+        word4.setOnLongClickListener(this);
+        word5.setOnLongClickListener(this);
+        word6.setOnLongClickListener(this);
+        droptext.setOnDragListener(this);
 
         continueButton = (ImageButton)viewVortludoj.findViewById(R.id.continueButton4);
         continueButton.setOnClickListener(this);
@@ -120,65 +120,6 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
     }
 
-    View.OnLongClickListener longListener = new View.OnLongClickListener()
-    {
-        @Override
-        public boolean onLongClick(View v)
-        {
-            TextView word = (TextView) v;
-            droptext.setBackgroundColor(Color.YELLOW);
-            View.DragShadowBuilder myShadowBuilder = new MyShadowBuilder(v);
-            ClipData data = ClipData.newPlainText("", "");
-            v.startDrag(data, myShadowBuilder, word, 0);
-
-            return true;
-        }
-    };
-    View.OnDragListener dragListener = new View.OnDragListener()
-    {
-        @Override
-        public boolean onDrag(View v, DragEvent event)
-        {
-            int dragEvent = event.getAction();
-            TextView dropText = (TextView) v;
-            switch(dragEvent)
-            {
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    dropText.setBackgroundColor(Color.GREEN);
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    dropText.setBackgroundColor(Color.YELLOW);
-                    break;
-                case DragEvent.ACTION_DROP:
-                    TextView draggedText = (TextView)event.getLocalState();
-                    String firstchar = draggedText.getText().toString().substring(0, 1);
-                    Boolean lastchar = draggedText.getText().toString().endsWith("-");
-                    System.out.println(lastchar);
-                    String guess = pretext.getText().toString() + droptext.getText().toString();
-
-
-                    if(firstchar.equals("-") && guess.endsWith("-")){
-
-                        dropText.append(draggedText.getText().toString().substring(1, draggedText.length())+" ");
-                        checkSentence();
-                    }
-
-                    else if(firstchar.equals("-")){
-                        dropText.append(draggedText.getText().toString() + " ");
-                        checkSentence();
-                    }
-
-                    else if(lastchar.equals(true)){
-                        dropText.append(draggedText.getText().toString());
-                        checkSentence();
-                        System.out.println("GUESS 2: " + guess);
-                    }
-                    break;
-            }
-            return true;
-        }
-    };
-
     public void checkSentence(){
 
         System.out.println("HEJSA!!: " + answer);
@@ -202,6 +143,57 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
         }
 
+    }
+
+    @Override
+    public boolean onLongClick(View v)
+    {
+        TextView word = (TextView) v;
+        droptext.setBackgroundColor(Color.YELLOW);
+        View.DragShadowBuilder myShadowBuilder = new MyShadowBuilder(v);
+        ClipData data = ClipData.newPlainText("", "");
+        v.startDrag(data, myShadowBuilder, word, 0);
+
+        return true;
+    }
+
+    @Override
+    public boolean onDrag(View v, DragEvent event)
+    {
+        int dragEvent = event.getAction();
+        TextView dropText = (TextView) v;
+        switch(dragEvent)
+        {
+            case DragEvent.ACTION_DRAG_ENTERED:
+                dropText.setBackgroundColor(Color.GREEN);
+                break;
+            case DragEvent.ACTION_DRAG_EXITED:
+                dropText.setBackgroundColor(Color.YELLOW);
+                break;
+            case DragEvent.ACTION_DROP:
+                TextView draggedText = (TextView)event.getLocalState();
+                String firstchar = draggedText.getText().toString().substring(0, 1);
+                Boolean lastchar = draggedText.getText().toString().endsWith("-");
+                System.out.println(lastchar);
+                String guess = pretext.getText().toString() + droptext.getText().toString();
+
+                if(firstchar.equals("-") && guess.endsWith("-")){
+
+                    dropText.append(draggedText.getText().toString().substring(1, draggedText.length())+" ");
+                    checkSentence();
+                }
+                else if(firstchar.equals("-")){
+                    dropText.append(draggedText.getText().toString() + " ");
+                    checkSentence();
+                }
+                else if(lastchar.equals(true)){
+                    dropText.append(draggedText.getText().toString());
+                    checkSentence();
+                    System.out.println("GUESS 2: " + guess);
+                }
+                break;
+        }
+        return true;
     }
 
     public void textVisibility(){

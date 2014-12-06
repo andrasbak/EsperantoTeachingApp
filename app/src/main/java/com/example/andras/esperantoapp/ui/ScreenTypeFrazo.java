@@ -63,21 +63,17 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
       }
 
 
-        return viewFrazo;
+      return viewFrazo;
     }
     public void onClick(View v){
 
         if(v.equals(imageButton)){
-
             mp.start();
             continueButton1.setVisibility(View.VISIBLE);
-
         }
         else if(v.equals(continueButton1)){
-
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
-
         }
     }
 
