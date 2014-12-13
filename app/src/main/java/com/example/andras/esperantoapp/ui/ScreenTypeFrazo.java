@@ -27,7 +27,7 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener
 
     ImageView imageView;
     ImageButton imageButton, continueButton1;
-    TextView textView, titleView;
+    TextView textView;
     MediaPlayer mp = new MediaPlayer();
 
 
@@ -49,13 +49,10 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener
         continueButton1.setOnClickListener(this);
         continueButton1.setVisibility(View.INVISIBLE);
         textView = (TextView)viewFrazo.findViewById(R.id.phrasePart1);
-        titleView = (TextView)viewFrazo.findViewById(R.id.titlePart1);
         try
         {
 
             jsondata = new JSONObject(getArguments().getString("jsondata"));
-            String exerciseTitle = getArguments().getString("exerciseTitle");
-            titleView.setText((exerciseTitle));
             textView.setText(jsondata.optString("phrase"));
             imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
             mp.reset();

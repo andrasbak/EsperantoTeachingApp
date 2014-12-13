@@ -9,58 +9,27 @@
     android:windowActionBar="false">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:id="@+id/linearLayout"
         android:layout_weight="0.4"
         android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.2">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"></View>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/titlePart1"
-                android:textColor="#ff000000"
-                android:gravity="center"
-                android:text="Leciono uno, Demando 01 el 24"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageViewPart1"
+            android:layout_weight="0.60"
+            android:src="@drawable/eks_elephant_85656_640"
+            android:gravity="center"/>
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.8">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.20"></View>
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:id="@+id/imageViewPart1"
-                android:layout_weight="0.60"
-                android:src="@drawable/eks_elephant_85656_640" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.20"></View>
-
-        </LinearLayout>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:orientation="vertical"

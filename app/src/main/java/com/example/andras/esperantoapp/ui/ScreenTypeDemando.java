@@ -24,7 +24,7 @@ import java.io.FileInputStream;
 public class ScreenTypeDemando extends Fragment implements View.OnClickListener {
 
 
-    TextView textView, titleView;
+    TextView textView;
     Button button1, button2;
     ImageButton continueButton3, soundButton;
 
@@ -48,7 +48,6 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         button2 = (Button)viewDemando.findViewById(R.id.buttonPart3_2);
         button2.setOnClickListener(this);
         textView = (TextView)viewDemando.findViewById(R.id.textViewPart3);
-        titleView = (TextView)viewDemando.findViewById(R.id.titlePart3);
         continueButton3 = (ImageButton)viewDemando.findViewById(R.id.continueButton3);
         continueButton3.setOnClickListener(this);
         continueButton3.setVisibility(View.INVISIBLE);
@@ -58,8 +57,6 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         try
         {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
-            String exerciseTitle = getArguments().getString("exerciseTitle");
-            titleView.setText((exerciseTitle));
             button1.setText(jsondata.optString("choise1"));
             button2.setText(jsondata.optString("choise2"));
             textView.setText(jsondata.optString("phrase"));

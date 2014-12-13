@@ -29,18 +29,18 @@ public class LessonFrag extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
 
-         View lessonOne = inflater.inflate(R.layout.fragment_lesson, container, false);
-         beginButton = (Button)lessonOne.findViewById(R.id.beginButton);
+         View lesson = inflater.inflate(R.layout.fragment_lesson, container, false);
+         beginButton = (Button)lesson.findViewById(R.id.beginButton);
          beginButton.setFocusable(true);
          beginButton.setOnClickListener(this);
 
-         textView = (TextView)lessonOne.findViewById(R.id.lessonTitle);
+         textView = (TextView)lesson.findViewById(R.id.lessonTitle);
          int lessonNr = getArguments().getInt("lesson");
          lessonJson =  App.lessons.get(lessonNr);
 
          textView.setText(lessonJson.optString("title") + "\n"  + "Begin");
 
-         return lessonOne;
+         return lesson;
 
     }
 

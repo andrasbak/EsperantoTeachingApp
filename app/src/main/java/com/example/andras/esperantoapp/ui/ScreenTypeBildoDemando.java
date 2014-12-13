@@ -25,7 +25,6 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
 
 
     ImageView imageView;
-    TextView titleView;
     Button button1, button2, button3;
     ImageButton continueButton2;
     String correct = "";
@@ -49,7 +48,6 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         button3 = (Button)viewBildoDemando.findViewById(R.id.buttonPart2_3);
         button3.setOnClickListener(this);
         imageView = (ImageView)viewBildoDemando.findViewById(R.id.imageViewPart2);
-        titleView = (TextView)viewBildoDemando.findViewById(R.id.titlePart2);
         continueButton2 = (ImageButton)viewBildoDemando.findViewById(R.id.continueButton2);
         continueButton2.setOnClickListener(this);
         continueButton2.setVisibility(View.INVISIBLE);
@@ -57,8 +55,6 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         try
         {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
-            String exerciseTitle = getArguments().getString("exerciseTitle");
-            titleView.setText((exerciseTitle));
             imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
             button1.setText(jsondata.optString("choise1"));
             button2.setText(jsondata.optString("choise2"));

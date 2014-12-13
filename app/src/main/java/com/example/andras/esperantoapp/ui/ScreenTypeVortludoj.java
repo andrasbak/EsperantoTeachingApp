@@ -36,7 +36,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
     private JSONObject jsondata;
     String answer;
-    TextView droptext, pretext, word1, word2, word3, word4, word5, word6, titleView;
+    TextView droptext, pretext, word1, word2, word3, word4, word5, word6;
     ImageButton continueButton;
     SensorManager sensorManager;
 
@@ -51,7 +51,6 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
         droptext = (TextView) viewVortludoj.findViewById(R.id.textDrop);
         pretext = (TextView) viewVortludoj.findViewById(R.id.textPrewords);
-        titleView = (TextView) viewVortludoj.findViewById(R.id.titlePart4);
 
         word1 = (TextView)viewVortludoj.findViewById(R.id.text1);
         word2 = (TextView)viewVortludoj.findViewById(R.id.text2);
@@ -85,8 +84,6 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
             word5.setText(jsondata.optString("word5"));
             word6.setText(jsondata.optString("word6"));
             pretext.setText(jsondata.optString("phrase"));
-            String exerciseTitle = getArguments().getString("exerciseTitle");
-            titleView.setText((exerciseTitle));
         }
         catch (Exception e)
         {

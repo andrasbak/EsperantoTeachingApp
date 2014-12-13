@@ -19,9 +19,10 @@ public class LessonActivity extends FragmentActivity
     ViewPager viewPager;
     LessonPagerAdapter lessonsPagerAdapter;
     ArrayList<JSONObject> småobj = new ArrayList<JSONObject>();
+    ArrayList<String> exerciseTitles = new ArrayList<String>();
     private static int synligTilSkærmbilledeNr = 0;
     private JSONObject lessonJson;
-    private String lessionTitle;
+    private String lessionTitle, exerciseTitle;
 
     /*
     Creates the view pager that contains all the exercises as they are created
@@ -50,6 +51,15 @@ public class LessonActivity extends FragmentActivity
                     småobj.add(questions.getJSONObject(j));
                     //System.out.println("SMÅ OBJEKTER: " + småobj.size());
                 }
+            }
+            for(int i = 0; i <= småobj.size(); i++){
+                if(i == småobj.size()){
+                    exerciseTitle = "finished";
+                }
+                else{
+                    exerciseTitle = lessionTitle + ", demando " + (i+1) + " el " + småobj.size();
+                }
+                exerciseTitles.add(exerciseTitle);
             }
         }
         catch (JSONException e)
@@ -108,7 +118,6 @@ public class LessonActivity extends FragmentActivity
             if(i < småobj.size())
             {
             JSONObject json = småobj.get(i);
-            String exerciseTitle = lessionTitle + ", demando " + (i+1) + " el " + småobj.size();
             System.out.println(json);
             System.out.println("LESSONS: " + App.lessons +"---------------------------------------------------------------");
             String type = json.optString("type", "mellemskærm");
@@ -119,11 +128,17 @@ public class LessonActivity extends FragmentActivity
             else if ("vortludoj".equals(type)) f = new ScreenTypeVortludoj();
             Bundle args = new Bundle();
             args.putString("jsondata", json.toString());
-            args.putString("exerciseTitle", exerciseTitle);
             f.setArguments(args);
             }
         else f = new ScreenTypeFinished();
         return f;
         }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+               return exerciseTitles.get(position);
+        }
+
     }
 }
