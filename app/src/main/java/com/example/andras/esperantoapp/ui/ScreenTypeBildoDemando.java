@@ -57,6 +57,8 @@ public class ScreenTypeBildoDemando extends Fragment implements View.OnClickList
         try
         {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
+            String exerciseTitle = getArguments().getString("exerciseTitle");
+            titleView.setText((exerciseTitle));
             imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
             button1.setText(jsondata.optString("choise1"));
             button2.setText(jsondata.optString("choise2"));

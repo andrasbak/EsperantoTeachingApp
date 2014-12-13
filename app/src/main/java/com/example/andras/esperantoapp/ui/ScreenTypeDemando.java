@@ -58,6 +58,8 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         try
         {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
+            String exerciseTitle = getArguments().getString("exerciseTitle");
+            titleView.setText((exerciseTitle));
             button1.setText(jsondata.optString("choise1"));
             button2.setText(jsondata.optString("choise2"));
             textView.setText(jsondata.optString("phrase"));

@@ -27,12 +27,9 @@
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/titlePart1"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentLeft="true"
-                android:textColor="#ff000000" />
+                android:textColor="#ff000000"
+                android:gravity="center"
+                android:text="Leciono uno, Demando 01 el 24"/>
 
         </LinearLayout>
 

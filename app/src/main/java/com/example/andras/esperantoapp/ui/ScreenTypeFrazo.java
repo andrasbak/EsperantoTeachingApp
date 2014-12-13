@@ -54,6 +54,8 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener
         {
 
             jsondata = new JSONObject(getArguments().getString("jsondata"));
+            String exerciseTitle = getArguments().getString("exerciseTitle");
+            titleView.setText((exerciseTitle));
             textView.setText(jsondata.optString("phrase"));
             imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
             mp.reset();

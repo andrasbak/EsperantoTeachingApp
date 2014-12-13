@@ -108,6 +108,7 @@ public class LessonActivity extends FragmentActivity
             if(i < småobj.size())
             {
             JSONObject json = småobj.get(i);
+            String exerciseTitle = lessionTitle + ", demando " + (i+1) + " el " + småobj.size();
             System.out.println(json);
             System.out.println("LESSONS: " + App.lessons +"---------------------------------------------------------------");
             String type = json.optString("type", "mellemskærm");
@@ -118,6 +119,7 @@ public class LessonActivity extends FragmentActivity
             else if ("vortludoj".equals(type)) f = new ScreenTypeVortludoj();
             Bundle args = new Bundle();
             args.putString("jsondata", json.toString());
+            args.putString("exerciseTitle", exerciseTitle);
             f.setArguments(args);
             }
         else f = new ScreenTypeFinished();
