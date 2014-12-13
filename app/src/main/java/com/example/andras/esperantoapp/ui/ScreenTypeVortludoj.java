@@ -31,7 +31,8 @@ import java.sql.SQLOutput;
 /**
  * Created by Andras on 24-11-2014.
  */
-public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener, View.OnLongClickListener, View.OnDragListener{
+public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener, View.OnLongClickListener, View.OnDragListener
+{
 
     private JSONObject jsondata;
     String answer;
@@ -39,9 +40,12 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
     ImageButton continueButton;
     SensorManager sensorManager;
 
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    /*
+    Creates the TypeVortludoj screen fragment with all the textviews and longclicklisteners, and
+    inserts the JSON data into the appropriate textviews.
+     */
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View viewVortludoj = inflater.inflate(R.layout.fragment_type_vortludoj, container, false);
 
@@ -69,7 +73,8 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
 
-        try{
+        try
+        {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
             answer = jsondata.optString("answer");
             word1.setText(jsondata.optString("word1"));
@@ -80,63 +85,93 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
             word6.setText(jsondata.optString("word6"));
             pretext.setText(jsondata.optString("phrase"));
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         textVisibility();
         return viewVortludoj;
     }
 
+    /*
+    onSensorChanged method defines what sensor type is used, what sensetivity the sensor should have
+    and what it should do when the change value requirements are met. In this case it should reset
+    the droptext textview when the accelerometer senses a gravity of more than 4* earth (shaking
+    the phone).
+     */
     @Override
-    public void onSensorChanged(SensorEvent e) {
+    public void onSensorChanged(SensorEvent e)
+    {
 
         int sensortype = e.sensor.getType();
-        if (sensortype == Sensor.TYPE_ACCELEROMETER) {
+        if (sensortype == Sensor.TYPE_ACCELEROMETER)
+        {
             double sum = Math.abs(e.values[0]) + Math.abs(e.values[1]) + Math.abs(e.values[2]);
-            if (sum > 4 * SensorManager.GRAVITY_EARTH) {
-
+            if (sum > 4 * SensorManager.GRAVITY_EARTH)
+            {
                 droptext.setText("");
-
             }
         }
+    }
+
+    /*
+    Default method created by SensorEventListener
+     */
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i)
+    {
 
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
 
     @Override
-    public void onResume() {
+    public void onResume()
+    {
         super.onResume();
 
         int hyppighed = 250000; // 4 gange i sekundet
 
-        for (Sensor sensor : sensorManager.getSensorList(Sensor.TYPE_ALL)) {
+        for (Sensor sensor : sensorManager.getSensorList(Sensor.TYPE_ALL))
+        {
             System.out.println("sensor=" + sensor);
             sensorManager.registerListener(this, sensor, hyppighed);
         }
 
     }
 
-    public void checkSentence(){
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+
+    /*
+    checkSentence method checks if the pretext + the sentence droped into the droptext textview is equal to the answer
+    received from the JSON file, and sets the continue button to visible if it is.
+     */
+    public void checkSentence()
+    {
 
         System.out.println("HEJSA!!: " + answer);
         System.out.println(droptext.getText().toString());
         System.out.println("GUESS: " + pretext.getText().toString() + droptext.getText().toString() + "------------------------------------------------------------------------------");
         System.out.println("GUESS: " + answer + "--------------------------------------------------------------");
-        if(answer.equals(pretext.getText().toString() + droptext.getText().toString())){
-
+        if(answer.equals(pretext.getText().toString() + droptext.getText().toString()))
+        {
             continueButton.setVisibility(View.VISIBLE);
             Toast.makeText(getActivity(), "Correct! You Passed!", Toast.LENGTH_SHORT).show();
-
         }
     }
 
+    /*
+    defines what should happen when the continue button is pressed. It creates a new fragment and
+    shifts to that fragment.
+     */
     public void onClick(View v){
 
-        if(v.equals(continueButton)){
+        if(v.equals(continueButton))
+        {
 
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
@@ -145,6 +180,12 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
     }
 
+
+    /*
+    Defines what should happen when a longClickevent occurs. When an event happens the text from the
+    textview is placed in the new shadow that is created, so it is dragged with the shadow until the
+    dragging event is ended.
+     */
     @Override
     public boolean onLongClick(View v)
     {
@@ -157,6 +198,12 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         return true;
     }
 
+    /*
+    Defines what should happen while a dragevent is occuring. It sets the color of the droptext
+    textview, when it enters and exits the droptext textview area. If the text is dropped the text
+    is appended to the droptext textview and afterwards it is checked to see if the sentence is equal
+    to the answer.
+     */
     @Override
     public boolean onDrag(View v, DragEvent event)
     {
@@ -177,16 +224,18 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
                 System.out.println(lastchar);
                 String guess = pretext.getText().toString() + droptext.getText().toString();
 
-                if(firstchar.equals("-") && guess.endsWith("-")){
-
+                if(firstchar.equals("-") && guess.endsWith("-"))
+                {
                     dropText.append(draggedText.getText().toString().substring(1, draggedText.length())+" ");
                     checkSentence();
                 }
-                else if(firstchar.equals("-")){
+                else if(firstchar.equals("-"))
+                {
                     dropText.append(draggedText.getText().toString() + " ");
                     checkSentence();
                 }
-                else if(lastchar.equals(true)){
+                else if(lastchar.equals(true))
+                {
                     dropText.append(draggedText.getText().toString());
                     checkSentence();
                     System.out.println("GUESS 2: " + guess);
@@ -196,29 +245,42 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         return true;
     }
 
-    public void textVisibility(){
+    /*
+    textVisibility sets the textviews containing no words to be invisible.
+     */
+    public void textVisibility()
+    {
 
-        if ((jsondata.optString("word1")).equals("")){
+        if ((jsondata.optString("word1")).equals(""))
+        {
             word1.setVisibility(View.INVISIBLE);
         }
-        if ((jsondata.optString("word2")).equals("")){
+        if ((jsondata.optString("word2")).equals(""))
+        {
             word2.setVisibility(View.INVISIBLE);
         }
-        if ((jsondata.optString("word3")).equals("")){
+        if ((jsondata.optString("word3")).equals(""))
+        {
             word3.setVisibility(View.INVISIBLE);
         }
-        if ((jsondata.optString("word4")).equals("")){
+        if ((jsondata.optString("word4")).equals(""))
+        {
             word4.setVisibility(View.INVISIBLE);
         }
-        if ((jsondata.optString("word5")).equals("")){
+        if ((jsondata.optString("word5")).equals(""))
+        {
             word5.setVisibility(View.INVISIBLE);
         }
-        if ((jsondata.optString("word6")).equals("")){
+        if ((jsondata.optString("word6")).equals(""))
+        {
             word6.setVisibility(View.INVISIBLE);
         }
 
     }
 
+    /*
+    MyShadowBuilder class is responsible for creating the shadow that is created on a longclickevent
+     */
     private class MyShadowBuilder extends View.DragShadowBuilder
     {
         private Drawable shadow;
@@ -227,6 +289,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
             super(v);
             shadow = new ColorDrawable(Color.YELLOW);
         }
+
         @Override
         public void onDrawShadow(Canvas canvas)
         {

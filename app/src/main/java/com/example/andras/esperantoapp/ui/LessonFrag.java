@@ -15,42 +15,45 @@ import com.example.andras.esperantoapp.R;
 import org.json.JSONObject;
 
 
-public class LessonFrag extends Fragment implements View.OnClickListener {
+public class LessonFrag extends Fragment implements View.OnClickListener
+{
 
     TextView textView;
     Button beginButton;
-  private JSONObject lessonJson;
+    private JSONObject lessonJson;
 
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+    /*
+    Creates the lesson fragments in the main menu pageviewer, that the user can select to start a
+    lesson
+    */
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
 
-        View lessonOne = inflater.inflate(R.layout.fragment_lesson, container, false);
-        beginButton = (Button)lessonOne.findViewById(R.id.beginButton);
-        beginButton.setFocusable(true);
-        beginButton.setOnClickListener(this);
+         View lessonOne = inflater.inflate(R.layout.fragment_lesson, container, false);
+         beginButton = (Button)lessonOne.findViewById(R.id.beginButton);
+         beginButton.setFocusable(true);
+         beginButton.setOnClickListener(this);
 
-      textView = (TextView)lessonOne.findViewById(R.id.lessonTitle);
+         textView = (TextView)lessonOne.findViewById(R.id.lessonTitle);
+         int lessonNr = getArguments().getInt("lesson");
+         lessonJson =  App.lessons.get(lessonNr);
 
+         textView.setText(lessonJson.optString("title") + "\n"  + "Begin");
 
-      int lessonNr = getArguments().getInt("lesson");
-      lessonJson =  App.lessons.get(lessonNr);
-
-      textView.setText(lessonJson.optString("title") + "\n"  + "Begin");
-
-        return lessonOne;
+         return lessonOne;
 
     }
 
-
-    public void onClick(View v){
-
-        if(v == beginButton){
-          // .putExtras(getArguments() overfører alle data fra fragmentets argument til intentet
-          startActivity(new Intent(getActivity(), LessonActivity.class).putExtras(getArguments()));
+    /*
+    Defines what should happen when the button is pressed.
+    */
+    public void onClick(View v)
+    {
+        if(v == beginButton)
+        {
+            // .putExtras(getArguments() overfører alle data fra fragmentets argument til intentet
+            startActivity(new Intent(getActivity(), LessonActivity.class).putExtras(getArguments()));
 
         }
-
-       }
-
-
+    }
 }

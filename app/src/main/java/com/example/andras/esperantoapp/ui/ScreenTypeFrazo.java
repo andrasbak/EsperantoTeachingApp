@@ -22,7 +22,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
+public class ScreenTypeFrazo extends Fragment implements View.OnClickListener
+{
 
     ImageView imageView;
     ImageButton imageButton, continueButton1;
@@ -30,11 +31,15 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
     MediaPlayer mp = new MediaPlayer();
 
 
-  private JSONObject jsondata;
+    private JSONObject jsondata;
 
-  @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    /*
+    Creates the TypeFrazo screen fragment the textviews, imageviews and buttons, and inserts the JSON
+    data into the appropriate textviews. The soundfile is also prepared to be played.
+    */
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View viewFrazo = inflater.inflate(R.layout.fragment_type_frazo, container, false);
         imageView = (ImageView)viewFrazo.findViewById(R.id.imageViewPart1);
@@ -45,33 +50,48 @@ public class ScreenTypeFrazo extends Fragment implements View.OnClickListener {
         continueButton1.setVisibility(View.INVISIBLE);
         textView = (TextView)viewFrazo.findViewById(R.id.phrasePart1);
         titleView = (TextView)viewFrazo.findViewById(R.id.titlePart1);
-      try {
+        try
+        {
 
-          jsondata = new JSONObject(getArguments().getString("jsondata"));
-          textView.setText(jsondata.optString("phrase"));
-          imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
-          mp.reset();
-          System.out.println("SOUND: " + FilCache.findLokaltFilnavn(jsondata.optString("sound")));
-          mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
-          mp.prepare();
+            jsondata = new JSONObject(getArguments().getString("jsondata"));
+            textView.setText(jsondata.optString("phrase"));
+            imageView.setImageURI(Uri.fromFile(new File(FilCache.findLokaltFilnavn(jsondata.optString("picture")))));
+            mp.reset();
+            System.out.println("SOUND: " + FilCache.findLokaltFilnavn(jsondata.optString("sound")));
+            mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
+            mp.prepare();
 
-      } catch (JSONException e) {
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            System.out.println("hej");
+        }
+        catch (IOException e)
+        {
           e.printStackTrace();
-          System.out.println("hej");
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
+        }
 
 
-      return viewFrazo;
+        return viewFrazo;
     }
-    public void onClick(View v){
 
-        if(v.equals(imageButton)){
+    /*
+    onClick defines what should happen when a click event occurs.
+    */
+    public void onClick(View v)
+    {
+
+        if(v.equals(imageButton))
+        {
+            //plays the soundfile loaded into the media player
             mp.start();
+            //sets the continue button to be visible
             continueButton1.setVisibility(View.VISIBLE);
         }
-        else if(v.equals(continueButton1)){
+        else if(v.equals(continueButton1))
+        {
+            //Creates a new fragment and shifts to that fragment.
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
         }

@@ -33,9 +33,13 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
 
     MediaPlayer mp = new MediaPlayer();
 
+    /*
+    Creates the TypeDemando screen fragment with all the textviews, buttons and imagebuttons, and
+    inserts the JSON data into the appropriate places. It also prepares the soundfile.
+     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View viewDemando = inflater.inflate(R.layout.fragment_type_demando, container, false);
 
@@ -51,7 +55,8 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
         soundButton = (ImageButton) viewDemando.findViewById(R.id.imageButtonPart3);
         soundButton.setOnClickListener(this);
 
-        try{
+        try
+        {
             jsondata = new JSONObject(getArguments().getString("jsondata"));
             button1.setText(jsondata.optString("choise1"));
             button2.setText(jsondata.optString("choise2"));
@@ -61,42 +66,60 @@ public class ScreenTypeDemando extends Fragment implements View.OnClickListener 
             mp.setDataSource(new FileInputStream(FilCache.findLokaltFilnavn(jsondata.optString("sound"))).getFD());
             mp.prepare();
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return viewDemando;
     }
 
-    private void toast(){
-
+    /*
+    toast method creates a toast.
+     */
+    private void toast()
+    {
         Toast.makeText(getActivity(), "Incrorrect! Try Again.", Toast.LENGTH_SHORT).show();
-
     }
 
-    public void onClick(View v){
+    /*
+    Defines what happens when a click event occurs. If a button is pressed the text is checked
+    to see it is equal to the correct answer. the sound button plays a the sound prepared.
+     */
+    public void onClick(View v)
+    {
 
-        if(v.equals(button1)){
-            if(button1.getText().equals(correct)){
+        if(v.equals(button1))
+        {
+            if(button1.getText().equals(correct))
+            {
                 continueButton3.setVisibility(View.VISIBLE);
             }
-            else{
-                toast();}
+            else
+            {
+                toast();
+            }
         }
-        else if(v.equals(button2)){
-            if(button2.getText().equals(correct)){
+        else if(v.equals(button2))
+        {
+            if(button2.getText().equals(correct))
+            {
                 continueButton3.setVisibility(View.VISIBLE);
             }
-            else{
-                toast();}
+            else
+            {
+                toast();
+            }
         }
-        else if(v.equals(continueButton3)){
+
+        //Creates a new fragment and shifts to that fragment.
+        else if(v.equals(continueButton3))
+        {
             ((LessonActivity) getActivity()).addFragment();
             ((LessonActivity) getActivity()).skiftBillede();
         }
-        else if (v.equals(soundButton)){
-
+        else if (v.equals(soundButton))
+        {
             mp.start();
-
         }
     }
 

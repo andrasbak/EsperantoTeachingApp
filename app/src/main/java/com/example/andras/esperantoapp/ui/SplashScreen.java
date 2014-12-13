@@ -11,13 +11,15 @@ import android.view.Window;
 
 import com.example.andras.esperantoapp.R;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends Activity
+{
 
     // Set Duration of the Splash Screen
     long Delay = 1000;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         // Remove the Title Bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -28,11 +30,12 @@ public class SplashScreen extends Activity {
         // Create a Timer
         Timer RunSplash = new Timer();
 
-
         // Task to do when the timer ends
-        TimerTask ShowSplash = new TimerTask() {
+        TimerTask ShowSplash = new TimerTask()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 // Close SplashScreenActivity.class
                 finish();
 
@@ -42,12 +45,7 @@ public class SplashScreen extends Activity {
                 startActivity(myIntent);
             }
         };
-
         // Start the timer
         RunSplash.schedule(ShowSplash, Delay);
-
     }
-
-
-
 }
