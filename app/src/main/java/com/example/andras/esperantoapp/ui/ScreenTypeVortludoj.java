@@ -131,11 +131,8 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
 
         int hyppighed = 250000; // 4 gange i sekundet
 
-        for (Sensor sensor : sensorManager.getSensorList(Sensor.TYPE_ALL))
-        {
-            System.out.println("sensor=" + sensor);
-            sensorManager.registerListener(this, sensor, hyppighed);
-        }
+        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, accelerometerSensor, hyppighed);
 
     }
 

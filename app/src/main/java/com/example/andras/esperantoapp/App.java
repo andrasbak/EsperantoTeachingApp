@@ -39,7 +39,8 @@ public class App extends Application
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String grundataStr = prefs.getString("grunddata", null);
-        if (grundataStr==null) grundataStr = JsonParser.inputStreamToString(getResources().openRawResource(R.raw.grunddata));
+        if (grundataStr==null) grundataStr = JsonParser.inputStreamToString(getResources()
+                .openRawResource(R.raw.grunddata));
 
         try
         {

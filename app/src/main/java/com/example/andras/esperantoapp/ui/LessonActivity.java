@@ -54,7 +54,7 @@ public class LessonActivity extends FragmentActivity
             }
             for(int i = 0; i <= småobj.size(); i++){
                 if(i == småobj.size()){
-                    exerciseTitle = "finished";
+                    exerciseTitle = "Finished";
                 }
                 else{
                     exerciseTitle = lessionTitle + ", demando " + (i+1) + " el " + småobj.size();
@@ -139,6 +139,5 @@ public class LessonActivity extends FragmentActivity
         {
                return exerciseTitles.get(position);
         }
-
     }
 }
