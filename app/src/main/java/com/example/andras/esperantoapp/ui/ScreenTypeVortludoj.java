@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,7 +32,7 @@ import java.sql.SQLOutput;
 /**
  * Created by Andras on 24-11-2014.
  */
-public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener, View.OnLongClickListener, View.OnDragListener
+public class ScreenTypeVortludoj extends Fragment implements View.OnClickListener, SensorEventListener, View.OnTouchListener, View.OnDragListener
 {
 
     private JSONObject jsondata;
@@ -59,12 +60,12 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
         word5 = (TextView)viewVortludoj.findViewById(R.id.text5);
         word6 = (TextView)viewVortludoj.findViewById(R.id.text6);
 
-        word1.setOnLongClickListener(this);
-        word2.setOnLongClickListener(this);
-        word3.setOnLongClickListener(this);
-        word4.setOnLongClickListener(this);
-        word5.setOnLongClickListener(this);
-        word6.setOnLongClickListener(this);
+        word1.setOnTouchListener(this);
+        word2.setOnTouchListener(this);
+        word3.setOnTouchListener(this);
+        word4.setOnTouchListener(this);
+        word5.setOnTouchListener(this);
+        word6.setOnTouchListener(this);
         droptext.setOnDragListener(this);
 
         continueButton = (ImageButton)viewVortludoj.findViewById(R.id.continueButton4);
@@ -128,12 +129,9 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
     public void onResume()
     {
         super.onResume();
-
         int hyppighed = 250000; // 4 gange i sekundet
-
         Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorManager.registerListener(this, accelerometerSensor, hyppighed);
-
     }
 
     @Override
@@ -184,7 +182,7 @@ public class ScreenTypeVortludoj extends Fragment implements View.OnClickListene
     dragging event is ended.
      */
     @Override
-    public boolean onLongClick(View v)
+    public boolean onTouch(View v, MotionEvent motionEvent)
     {
         TextView word = (TextView) v;
         droptext.setBackgroundColor(Color.YELLOW);

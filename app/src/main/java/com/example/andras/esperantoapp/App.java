@@ -23,7 +23,6 @@ public class App extends Application
 {
 
 
-    public static SharedPreferences prefs;
     public static JSONObject grundata;
     public static ArrayList<JSONObject> lessons;
 
@@ -36,10 +35,7 @@ public class App extends Application
         FilCache.init(getCacheDir());
         super.onCreate();
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        String grundataStr = prefs.getString("grunddata", null);
-        if (grundataStr==null) grundataStr = JsonParser.inputStreamToString(getResources()
+        String grundataStr = JsonParser.inputStreamToString(getResources()
                 .openRawResource(R.raw.grunddata));
 
         try
@@ -183,12 +179,9 @@ public class App extends Application
         System.out.println("PICTURESOUND: " + pictureSound);
         for(int i = 0; i < pictureSound.size(); i++)
         {
-            String lokalHentetFil = null;
-            FileInputStream is;
-
             try
             {
-                lokalHentetFil = FilCache.hentFil(pictureSound.get(i), true);
+                FilCache.hentFil(pictureSound.get(i), true);
             }
             catch (IOException e)
             {

@@ -41,7 +41,6 @@ public class LessonActivity extends FragmentActivity
         try
         {
             parts = lessonJson.getJSONArray("parts");
-            String titel = lessonJson.getString("title");
             for(int i = 0; i < parts.length(); i++)
             {
                 JSONObject part = parts.getJSONObject(i);
